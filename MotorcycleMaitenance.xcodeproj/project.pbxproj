@@ -15,6 +15,7 @@
 		9B40789F1F93BDC6006C3B70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B40789D1F93BDC6006C3B70 /* LaunchScreen.storyboard */; };
 		9B4078AA1F93BDC6006C3B70 /* MotorcycleMaitenanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4078A91F93BDC6006C3B70 /* MotorcycleMaitenanceTests.swift */; };
 		9B4078B51F93BDC6006C3B70 /* MotorcycleMaitenanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4078B41F93BDC6006C3B70 /* MotorcycleMaitenanceUITests.swift */; };
+		9B4078C41F93BDF5006C3B70 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B4078C31F93BDF4006C3B70 /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		9B4078B01F93BDC6006C3B70 /* MotorcycleMaitenanceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MotorcycleMaitenanceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B4078B41F93BDC6006C3B70 /* MotorcycleMaitenanceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorcycleMaitenanceUITests.swift; sourceTree = "<group>"; };
 		9B4078B61F93BDC6006C3B70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9B4078C31F93BDF4006C3B70 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B4078C41F93BDF5006C3B70 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +86,7 @@
 				9B4078A81F93BDC6006C3B70 /* MotorcycleMaitenanceTests */,
 				9B4078B31F93BDC6006C3B70 /* MotorcycleMaitenanceUITests */,
 				9B4078901F93BDC6006C3B70 /* Products */,
+				9B4078C21F93BDF4006C3B70 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,6 +130,14 @@
 				9B4078B61F93BDC6006C3B70 /* Info.plist */,
 			);
 			path = MotorcycleMaitenanceUITests;
+			sourceTree = "<group>";
+		};
+		9B4078C21F93BDF4006C3B70 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9B4078C31F93BDF4006C3B70 /* CoreData.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -437,7 +449,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.opfietse.MotorcycleMaitenance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -452,7 +464,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.opfietse.MotorcycleMaitenance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
