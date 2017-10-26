@@ -16,6 +16,7 @@
 		9B4078AA1F93BDC6006C3B70 /* MotorcycleMaitenanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4078A91F93BDC6006C3B70 /* MotorcycleMaitenanceTests.swift */; };
 		9B4078B51F93BDC6006C3B70 /* MotorcycleMaitenanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4078B41F93BDC6006C3B70 /* MotorcycleMaitenanceUITests.swift */; };
 		9B4078C41F93BDF5006C3B70 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B4078C31F93BDF4006C3B70 /* CoreData.framework */; };
+		9BC8D7C61F93F0D800DA1989 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BC8D7C41F93F0D800DA1989 /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		9B4078B41F93BDC6006C3B70 /* MotorcycleMaitenanceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorcycleMaitenanceUITests.swift; sourceTree = "<group>"; };
 		9B4078B61F93BDC6006C3B70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B4078C31F93BDF4006C3B70 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		9BC8D7C51F93F0D800DA1989 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				9B40789B1F93BDC6006C3B70 /* Assets.xcassets */,
 				9B40789D1F93BDC6006C3B70 /* LaunchScreen.storyboard */,
 				9B4078A01F93BDC6006C3B70 /* Info.plist */,
+				9BC8D7C41F93F0D800DA1989 /* Model.xcdatamodeld */,
 			);
 			path = MotorcycleMaitenance;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				9B4078971F93BDC6006C3B70 /* SecondViewController.swift in Sources */,
 				9B4078931F93BDC6006C3B70 /* AppDelegate.swift in Sources */,
 				9B4078951F93BDC6006C3B70 /* FirstViewController.swift in Sources */,
+				9BC8D7C61F93F0D800DA1989 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,6 +578,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9BC8D7C41F93F0D800DA1989 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9BC8D7C51F93F0D800DA1989 /* Model.xcdatamodel */,
+			);
+			currentVersion = 9BC8D7C51F93F0D800DA1989 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9B4078871F93BDC6006C3B70 /* Project object */;
 }
