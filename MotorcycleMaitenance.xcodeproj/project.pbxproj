@@ -17,6 +17,11 @@
 		9B4078B51F93BDC6006C3B70 /* MotorcycleMaitenanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4078B41F93BDC6006C3B70 /* MotorcycleMaitenanceUITests.swift */; };
 		9B4078C41F93BDF5006C3B70 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B4078C31F93BDF4006C3B70 /* CoreData.framework */; };
 		9BC8D7C61F93F0D800DA1989 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BC8D7C41F93F0D800DA1989 /* Model.xcdatamodeld */; };
+		9BCA8E541FAE0B51000D8311 /* MotorcycleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCA8E531FAE0B51000D8311 /* MotorcycleTableViewController.swift */; };
+		9BCA8E561FAE0BAC000D8311 /* CDTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCA8E551FAE0BAC000D8311 /* CDTableViewController.swift */; };
+		9BCA8E591FAE0C61000D8311 /* CDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCA8E581FAE0C60000D8311 /* CDHelper.swift */; };
+		9BCA8E5B1FAE1A5F000D8311 /* CDMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCA8E5A1FAE1A5F000D8311 /* CDMigration.swift */; };
+		9BCA8E5D1FAE1B30000D8311 /* MigrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCA8E5C1FAE1B2F000D8311 /* MigrationVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,11 @@
 		9B4078B61F93BDC6006C3B70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B4078C31F93BDF4006C3B70 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		9BC8D7C51F93F0D800DA1989 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		9BCA8E531FAE0B51000D8311 /* MotorcycleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotorcycleTableViewController.swift; sourceTree = "<group>"; };
+		9BCA8E551FAE0BAC000D8311 /* CDTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDTableViewController.swift; sourceTree = "<group>"; };
+		9BCA8E581FAE0C60000D8311 /* CDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDHelper.swift; sourceTree = "<group>"; };
+		9BCA8E5A1FAE1A5F000D8311 /* CDMigration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDMigration.swift; sourceTree = "<group>"; };
+		9BCA8E5C1FAE1B2F000D8311 /* MigrationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MigrationVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +115,8 @@
 		9B4078911F93BDC6006C3B70 /* MotorcycleMaitenance */ = {
 			isa = PBXGroup;
 			children = (
+				9BCA8E571FAE0C3D000D8311 /* data */,
+				9BCA8E521FAE0AD4000D8311 /* viewcontrollers */,
 				9B4078921F93BDC6006C3B70 /* AppDelegate.swift */,
 				9B4078941F93BDC6006C3B70 /* FirstViewController.swift */,
 				9B4078961F93BDC6006C3B70 /* SecondViewController.swift */,
@@ -141,6 +153,25 @@
 				9B4078C31F93BDF4006C3B70 /* CoreData.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9BCA8E521FAE0AD4000D8311 /* viewcontrollers */ = {
+			isa = PBXGroup;
+			children = (
+				9BCA8E5C1FAE1B2F000D8311 /* MigrationVC.swift */,
+				9BCA8E551FAE0BAC000D8311 /* CDTableViewController.swift */,
+				9BCA8E531FAE0B51000D8311 /* MotorcycleTableViewController.swift */,
+			);
+			path = viewcontrollers;
+			sourceTree = "<group>";
+		};
+		9BCA8E571FAE0C3D000D8311 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				9BCA8E5A1FAE1A5F000D8311 /* CDMigration.swift */,
+				9BCA8E581FAE0C60000D8311 /* CDHelper.swift */,
+			);
+			path = data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,8 +309,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B4078971F93BDC6006C3B70 /* SecondViewController.swift in Sources */,
+				9BCA8E541FAE0B51000D8311 /* MotorcycleTableViewController.swift in Sources */,
+				9BCA8E5D1FAE1B30000D8311 /* MigrationVC.swift in Sources */,
 				9B4078931F93BDC6006C3B70 /* AppDelegate.swift in Sources */,
 				9B4078951F93BDC6006C3B70 /* FirstViewController.swift in Sources */,
+				9BCA8E561FAE0BAC000D8311 /* CDTableViewController.swift in Sources */,
+				9BCA8E5B1FAE1A5F000D8311 /* CDMigration.swift in Sources */,
+				9BCA8E591FAE0C61000D8311 /* CDHelper.swift in Sources */,
 				9BC8D7C61F93F0D800DA1989 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
