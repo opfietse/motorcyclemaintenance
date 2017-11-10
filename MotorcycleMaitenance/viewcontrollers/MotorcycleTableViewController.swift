@@ -12,13 +12,12 @@ import CoreData
 class MotorcycleTableViewController: CDTableViewController {
     
     // MARK: - CELL CONFIGURATION
-    override func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        
+    override func configureCell(cell: UITableViewCell, atIndexPath indexPath: IndexPath) {
         cell.accessoryType = UITableViewCellAccessoryType.none
         
-        if let locationAtHome = self.frc.objectAtIndexPath(indexPath) as? Motorcycle {
+        if let motorcycle = self.frc.object(at: indexPath) as? Motorcycle {
             if let textLabel = cell.textLabel {
-                textLabel.text = locationAtHome.storedIn
+                textLabel.text = motorcycle.registration! + " " + (motorcycle.motorcycleType?.make)! + " " + (motorcycle.motorcycleType?.model)!
             }
         }
     }
@@ -28,26 +27,27 @@ class MotorcycleTableViewController: CDTableViewController {
         super.init(coder: aDecoder)
         
         // CDTableViewController subclass customization
-        self.entity = "LocationAtHome"
-        self.sort = [NSSortDescriptor(key: "storedIn", ascending: true)]
+        self.entity = "Motorcycle"
+        self.sort = [NSSortDescriptor(key: "registration", ascending: true)]
         self.fetchBatchSize = 25
     }
     
     // MARK: - VIEW
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Home Locations"
+        self.navigationItem.title = "Motorcycles"
         self.performFetch()
     }
     
     // MARK: - DATA SOURCE: UITableView
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        
-        if let object = self.frc.objectAtIndexPath(indexPath) as? NSManagedObject {
-            self.frc.managedObjectContext.deleteObject(object)
-        }
-        CDHelper.saveSharedContext()
-    }
+//    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+//
+//        if let object = self.frc.object(at: indexPath as IndexPath) as? NSManagedObject {
+//            self.frc.managedObjectContext.delete(object)
+//        }
+//
+//        CDHelper.saveSharedContext()
+//    }
     
     // MARK: - INTERACTION
     @IBAction func done (sender: AnyObject) {
@@ -58,22 +58,22 @@ class MotorcycleTableViewController: CDTableViewController {
     }
     
     // MARK: - SEGUE
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let locationAtHomeVC = segue.destinationViewController as? LocationAtHomeVC {
-        
-            if segue.identifier == "Add Object Segue" {
-            
-                let object = NSEntityDescription.insertNewObject(forEntityName: "LocationAtHome", into: CDHelper.shared.context)
-                locationAtHomeVC.segueObject = object
-                
-            } else if segue.identifier == "Edit Object Segue" {
-                
-                if let indexPath = self.tableView.indexPathForSelectedRow {
-                    if let object = self.frc.objectAtIndexPath(indexPath) as? NSManagedObject {
-                        locationAtHomeVC.segueObject = object
-                    }
-                }
-            } else {print("Unidentified Segue Attempted!")}
-        }
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if let locationAtHomeVC = segue.destinationViewController as? LocationAtHomeVC {
+//
+//            if segue.identifier == "Add Object Segue" {
+//
+//                let object = NSEntityDescription.insertNewObject(forEntityName: "LocationAtHome", into: CDHelper.shared.context)
+//                locationAtHomeVC.segueObject = object
+//
+//            } else if segue.identifier == "Edit Object Segue" {
+//
+//                if let indexPath = self.tableView.indexPathForSelectedRow {
+//                    if let object = self.frc.objectAtIndexPath(indexPath) as? NSManagedObject {
+//                        locationAtHomeVC.segueObject = object
+//                    }
+//                }
+//            } else {print("Unidentified Segue Attempted!")}
+//        }
+//    }
 }

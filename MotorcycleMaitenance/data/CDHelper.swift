@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 private let _sharedCDHelper = CDHelper()
+
 class CDHelper : NSObject  {
     
     // MARK: - SHARED INSTANCE
@@ -18,48 +19,48 @@ class CDHelper : NSObject  {
     }
     
     // MARK: - PATHS
-    lazy var storesDirectory: NSURL? = {
+    lazy var storesDirectory: URL? = {
         let fm = FileManager.default
         let urls = fm.urls(for: .documentDirectory, in: .userDomainMask)
-        return urls[urls.count-1] as NSURL
+        return urls[urls.count - 1]
     }()
 
-    lazy var localStoreURL: NSURL? = {
+    lazy var localStoreURL: URL? = {
         if let url = self.storesDirectory?.appendingPathComponent("LocalStore.sqlite") {
             print("localStoreURL = \(url)")
-            return url as NSURL
+            return url
         }
         return nil
     }()
 
-    lazy var iCloudStoreURL: NSURL? = {
+    lazy var iCloudStoreURL: URL? = {
         if let url = self.storesDirectory?.appendingPathComponent("iCloud.sqlite") {
             print("iCloudStoreURL = \(url)")
-            return url as NSURL
+            return url
         }
         return nil
     }()
 
-    lazy var sourceStoreURL: NSURL? = {
+    lazy var sourceStoreURL: URL? = {
         if let url = Bundle.main.url(forResource: "DefaultData", withExtension: "sqlite") {
             print("sourceStoreURL = \(url)")
-            return url as NSURL
+            return url
         }
         return nil
     }()
 
-    lazy var seedStoreURL: NSURL? = {
+    lazy var seedStoreURL: URL? = {
         if let url = self.storesDirectory?.appendingPathComponent("LocalStore.sqlite") {
             print("seedStoreURL = \(url)")
-            return url as NSURL
+            return url
         }
         return nil
     }()
 
-    lazy var modelURL: NSURL = {
+    lazy var modelURL: URL = {
         let bundle = Bundle.main
         if let url = bundle.url(forResource: "Model", withExtension: "momd") {
-            return url as NSURL
+            return url
         }
         print("CRITICAL - Managed Object Model file not found")
         abort()
@@ -109,18 +110,20 @@ class CDHelper : NSObject  {
     lazy var coordinator: NSPersistentStoreCoordinator = {
         return NSPersistentStoreCoordinator(managedObjectModel:self.model)
     }()
+    
     lazy var sourceCoordinator:NSPersistentStoreCoordinator = {
         return NSPersistentStoreCoordinator(managedObjectModel:self.model)
     }()
+    
     lazy var seedCoordinator:NSPersistentStoreCoordinator = {
         return NSPersistentStoreCoordinator(managedObjectModel:self.model)
     }()
         
     // MARK: - STORE
     lazy var localStore: NSPersistentStore? = {
-
         let useMigrationManager = false
-        if let _localStoreURL = self.localStoreURL {        
+
+        if let _localStoreURL = self.localStoreURL {
             if useMigrationManager == true &&
                 CDMigration.shared.storeExistsAtPath(storeURL: _localStoreURL) &&
                 CDMigration.shared.store(storeURL: _localStoreURL, isCompatibleWithModel: self.model) == false {
@@ -133,40 +136,43 @@ class CDHelper : NSObject  {
             NSInferMappingModelAutomaticallyOption as NSObject:1 as AnyObject]
         var _localStore:NSPersistentStore?
         do {
-            _localStore = try self.coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: self.localStoreURL as? URL, options: options)
+            _localStore = try self.coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: self.localStoreURL, options: options)
             return _localStore
         } catch {
             return nil
         }
     }()
-    lazy var iCloudStore: NSPersistentStore? = {
-
-       // Change contentNameKey for your own applications
-        let contentNameKey = "Groceries"
-        
-        print("Using '\(contentNameKey)' as the iCloud Ubiquitous Content Name Key")
-        let options:[NSObject:AnyObject] =
-            [NSMigratePersistentStoresAutomaticallyOption as NSObject:1 as AnyObject,
-             NSInferMappingModelAutomaticallyOption as NSObject:1 as AnyObject,
-             NSPersistentStoreUbiquitousContentNameKey as NSObject:contentNameKey as AnyObject
-                  //,NSPersistentStoreUbiquitousContentURLKey:"ChangeLogs" // Optional since iOS7
-                    ]
-        var _iCloudStore:NSPersistentStore?
-        do {
-            _iCloudStore = try self.coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: self.iCloudStoreURL as! URL,options: options)
-            return _iCloudStore
-        } catch {
-            print("\(#function) ERROR adding iCloud store : \(error)")
-            return nil
-        }
-    }()
+    
+//    lazy var iCloudStore: NSPersistentStore? = {
+//
+//       // Change contentNameKey for your own applications
+//        let contentNameKey = "Groceries"
+//
+//        print("Using '\(contentNameKey)' as the iCloud Ubiquitous Content Name Key")
+//        let options:[NSObject:AnyObject] =
+//            [NSMigratePersistentStoresAutomaticallyOption as NSObject:1 as AnyObject,
+//             NSInferMappingModelAutomaticallyOption as NSObject:1 as AnyObject,
+//             NSPersistentStoreUbiquitousContentNameKey as NSObject:contentNameKey as AnyObject
+//                  //,NSPersistentStoreUbiquitousContentURLKey:"ChangeLogs" // Optional since iOS7
+//                    ]
+//        var _iCloudStore:NSPersistentStore?
+//        do {
+//            _iCloudStore = try self.coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: self.iCloudStoreURL as! URL,options: options)
+//            return _iCloudStore
+//        } catch {
+//            print("\(#function) ERROR adding iCloud store : \(error)")
+//            return nil
+//        }
+//    }()
+    
     lazy var sourceStore: NSPersistentStore? = {
             
         let options:[NSObject:AnyObject] = [NSReadOnlyPersistentStoreOption as NSObject:1 as AnyObject]
             
         var _sourceStore:NSPersistentStore?
         do {
-            _sourceStore = try self.sourceCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: self.sourceStoreURL as! URL, options: options)
+           // self.sourceCoordinator.addP
+            _sourceStore = try self.sourceCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: self.sourceStoreURL, options: options)
             return _sourceStore
         } catch {
             return nil
@@ -196,8 +202,8 @@ class CDHelper : NSObject  {
         } else {print("\(#function) ERROR removing persistent store : store \(ps.description) has no coordinator")}
         return false // Fail
     }
+    
     func removeFileAtURL (url:NSURL) {
-          
         do {
             try FileManager.default.removeItem(at: url as URL)
             print("Deleted \(url)")
@@ -222,8 +228,8 @@ class CDHelper : NSObject  {
         } */
 
         // Load Local Store
-         self.setDefaultDataStoreAsInitialStore()
-        _ = self.sourceStore
+     //    self.setDefaultDataStoreAsInitialStore()
+     //   _ = self.sourceStore
         _ = self.localStore
             
         /*// Load iCloud Store
@@ -274,18 +280,20 @@ class CDHelper : NSObject  {
     
     // MARK: - DEFAULT STORE
     func setDefaultDataStoreAsInitialStore () {
-        if let url = self.localStoreURL, let path = url.path {
+         let url = self.localStoreURL
+         let path = url!.path
             if FileManager.default.fileExists(atPath: path) == false {
                 if let defaultDataURL = Bundle.main.url(forResource: "DefaultData", withExtension: "sqlite") {
                     do {
-                        try FileManager.default.copyItem(at: defaultDataURL, to: url as URL)
-                        print("A copy of DefaultData.sqlite was set as the initial store for \(url)")
+                        try FileManager.default.copyItem(at: defaultDataURL, to: url!)
+                        print("A copy of DefaultData.sqlite was set as the initial store for \(String(describing: url))")
                     } catch {
                         print("\(#function) ERROR setting DefaultData.sqlite as the initial store: : \(error)")
                     }
                 } else {print("\(#function) ERROR: Could not find DefaultData.sqlite in the application bundle.")}
             } 
-        } else {print("\(#function) ERROR: Failed to prepare URL in \(#function)")}
+        
+        print("\(#function) ERROR: Failed to prepare URL in \(#function)")
     } 
     
     // MARK: - ICLOUD
