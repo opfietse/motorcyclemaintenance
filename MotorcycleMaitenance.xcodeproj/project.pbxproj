@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E1A526E1FB893B100F9CAFC /* MotorcycleMaintenanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A526D1FB893B100F9CAFC /* MotorcycleMaintenanceTableViewController.swift */; };
 		6E22E4411FB4B1B100BB3C3E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E22E4401FB4B1B100BB3C3E /* libsqlite3.tbd */; };
 		6E22E4431FB4B43F00BB3C3E /* CDImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E22E4421FB4B43E00BB3C3E /* CDImporter.swift */; };
 		9B4078931F93BDC6006C3B70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4078921F93BDC6006C3B70 /* AppDelegate.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6E1A526D1FB893B100F9CAFC /* MotorcycleMaintenanceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotorcycleMaintenanceTableViewController.swift; sourceTree = "<group>"; };
 		6E22E4401FB4B1B100BB3C3E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		6E22E4421FB4B43E00BB3C3E /* CDImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDImporter.swift; sourceTree = "<group>"; };
 		9B40788F1F93BDC6006C3B70 /* MotorcycleMaitenance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotorcycleMaitenance.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +166,7 @@
 		9BCA8E521FAE0AD4000D8311 /* viewcontrollers */ = {
 			isa = PBXGroup;
 			children = (
+				6E1A526D1FB893B100F9CAFC /* MotorcycleMaintenanceTableViewController.swift */,
 				9BCA8E5C1FAE1B2F000D8311 /* MigrationVC.swift */,
 				9BCA8E551FAE0BAC000D8311 /* CDTableViewController.swift */,
 				9BCA8E531FAE0B51000D8311 /* MotorcycleTableViewController.swift */,
@@ -321,6 +324,7 @@
 				9B4078931F93BDC6006C3B70 /* AppDelegate.swift in Sources */,
 				9B4078951F93BDC6006C3B70 /* FirstViewController.swift in Sources */,
 				9BCA8E561FAE0BAC000D8311 /* CDTableViewController.swift in Sources */,
+				6E1A526E1FB893B100F9CAFC /* MotorcycleMaintenanceTableViewController.swift in Sources */,
 				6E22E4431FB4B43F00BB3C3E /* CDImporter.swift in Sources */,
 				9BCA8E5B1FAE1A5F000D8311 /* CDMigration.swift in Sources */,
 				9BCA8E591FAE0C61000D8311 /* CDHelper.swift in Sources */,

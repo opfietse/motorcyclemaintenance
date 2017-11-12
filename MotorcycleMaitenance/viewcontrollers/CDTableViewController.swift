@@ -110,19 +110,27 @@ class CDTableViewController: UITableViewController, NSFetchedResultsControllerDe
         let i = self.frc.sections![section].numberOfObjects
         
         if (i == 0) {
-            let mct: MotorcycleType = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleType", into: CDHelper.shared.context) as? MotorcycleType)!
-            mct.make = "Moto Guzzi"
-            mct.model = "Bellagio"
-            mct.year = 2009
-            
-            let mc: Motorcycle = (NSEntityDescription.insertNewObject(forEntityName: "Motorcycle", into: CDHelper.shared.context) as? Motorcycle)!
-            mc.motorcycleType = mct
-            mc.registration = "MG-enzovoort"
-            
-            CDHelper.saveSharedContext()
+            createRecords()
         }
         
         return i
+    }
+    
+    func createRecords() {
+        let mct: MotorcycleType = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleType", into: CDHelper.shared.context) as? MotorcycleType)!
+        mct.make = "Moto Guzzi"
+        mct.model = "Bellagio"
+        mct.year = 2009
+        
+        let mc: Motorcycle = (NSEntityDescription.insertNewObject(forEntityName: "Motorcycle", into: CDHelper.shared.context) as? Motorcycle)!
+        mc.motorcycleType = mct
+        mc.registration = "MG-enzovoort"
+        
+        let mcm: MotorcycleMaintenance = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleMaintenance", into: CDHelper.shared.context) as? MotorcycleMaintenance)!
+        mcm.creationDate = Date()
+        mcm.motorcycle = mc
+        
+        CDHelper.saveSharedContext()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

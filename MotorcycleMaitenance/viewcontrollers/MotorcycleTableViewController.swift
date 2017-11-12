@@ -39,15 +39,20 @@ class MotorcycleTableViewController: CDTableViewController {
         self.performFetch()
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // pass any object as parameter, i.e. the tapped row
+        performSegue(withIdentifier: "mcToMcmSegue", sender: self.tableView.cellForRow(at: indexPath))
+    }
+    
     // MARK: - DATA SOURCE: UITableView
-//    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-//
-//        if let object = self.frc.object(at: indexPath as IndexPath) as? NSManagedObject {
-//            self.frc.managedObjectContext.delete(object)
-//        }
-//
-//        CDHelper.saveSharedContext()
-//    }
+    //    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    //
+    //        if let object = self.frc.object(at: indexPath as IndexPath) as? NSManagedObject {
+    //            self.frc.managedObjectContext.delete(object)
+    //        }
+    //
+    //        CDHelper.saveSharedContext()
+    //    }
     
     // MARK: - INTERACTION
     @IBAction func done (sender: AnyObject) {
@@ -58,7 +63,24 @@ class MotorcycleTableViewController: CDTableViewController {
     }
     
     // MARK: - SEGUE
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let a = segue.destination
+        print(a)
+        
+        var mc: Motorcycle? = nil
+        
+        if let cell = sender as? UITableViewCell {
+            let indexPath: IndexPath = self.tableView.indexPath(for: cell)!
+            mc = self.frc.object(at: indexPath) as? Motorcycle
+        } else {
+            let i = IndexPath(row: 0, section: 0)
+//            i.row = 0
+//            i.section = 0
+            mc = self.frc.object(at: i) as? Motorcycle
+        }
+        
+        print(String(describing: mc))
 //        if let locationAtHomeVC = segue.destinationViewController as? LocationAtHomeVC {
 //
 //            if segue.identifier == "Add Object Segue" {
@@ -69,11 +91,11 @@ class MotorcycleTableViewController: CDTableViewController {
 //            } else if segue.identifier == "Edit Object Segue" {
 //
 //                if let indexPath = self.tableView.indexPathForSelectedRow {
-//                    if let object = self.frc.objectAtIndexPath(indexPath) as? NSManagedObject {
+//                    if let object = self.frc.object(at: indexPath) as? NSManagedObject {
 //                        locationAtHomeVC.segueObject = object
 //                    }
 //                }
 //            } else {print("Unidentified Segue Attempted!")}
 //        }
-//    }
+    }
 }
