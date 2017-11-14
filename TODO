@@ -1,0 +1,2 @@
+- ERROR screen on db errror at startup
+- Migrate to new schema with non-optional fields
