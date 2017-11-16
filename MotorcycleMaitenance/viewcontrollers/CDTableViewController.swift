@@ -90,7 +90,7 @@ class CDTableViewController: UITableViewController, NSFetchedResultsControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         // Force fetch when notified of significant data changes
-        NotificationCenter.default.addObserver(self, selector: "performFetch", name: NSNotification.Name(rawValue: "SomethingChanged"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: Selector(("performFetch")), name: NSNotification.Name(rawValue: "SomethingChanged"), object: nil)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

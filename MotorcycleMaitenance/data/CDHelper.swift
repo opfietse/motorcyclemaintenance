@@ -146,7 +146,7 @@ class CDHelper : NSObject  {
 //    lazy var iCloudStore: NSPersistentStore? = {
 //
 //       // Change contentNameKey for your own applications
-//        let contentNameKey = "Groceries"
+//        let contentNameKey = "opfietse.MotorcycleMaintenance"
 //
 //        print("Using '\(contentNameKey)' as the iCloud Ubiquitous Content Name Key")
 //        let options:[NSObject:AnyObject] =
@@ -155,9 +155,10 @@ class CDHelper : NSObject  {
 //             NSPersistentStoreUbiquitousContentNameKey as NSObject:contentNameKey as AnyObject
 //                  //,NSPersistentStoreUbiquitousContentURLKey:"ChangeLogs" // Optional since iOS7
 //                    ]
-//        var _iCloudStore:NSPersistentStore?
+//        var _iCloudStore: NSPersistentStore?
+//
 //        do {
-//            _iCloudStore = try self.coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: self.iCloudStoreURL as! URL,options: options)
+//            _iCloudStore = try self.coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: self.iCloudStoreURL, options: options)
 //            return _iCloudStore
 //        } catch {
 //            print("\(#function) ERROR adding iCloud store : \(error)")
@@ -178,13 +179,14 @@ class CDHelper : NSObject  {
             return nil
         }
     }()
+    
     lazy var seedStore: NSPersistentStore? = {
             
         let options:[NSObject:AnyObject] = [NSReadOnlyPersistentStoreOption as NSObject:1 as AnyObject]
             
         var _seedStore:NSPersistentStore?
         do {
-            _seedStore = try self.seedCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: self.seedStoreURL as? URL, options: options)
+            _seedStore = try self.seedCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: self.seedStoreURL, options: options)
             return _seedStore
         } catch {
             return nil
@@ -316,7 +318,7 @@ class CDHelper : NSObject  {
         let dc = NotificationCenter.default
         dc.addObserver(self, selector: Selector(("storesWillChange:")), name: NSNotification.Name.NSPersistentStoreCoordinatorStoresWillChange, object: self.coordinator)
         dc.addObserver(self, selector: Selector(("storesDidChange:")), name: NSNotification.Name.NSPersistentStoreCoordinatorStoresDidChange, object: self.coordinator)
-        dc.addObserver(self, selector: "iCloudDataChanged:", name: NSNotification.Name.NSPersistentStoreDidImportUbiquitousContentChanges, object:self.coordinator)
+        dc.addObserver(self, selector: Selector(("iCloudDataChanged:")), name: NSNotification.Name.NSPersistentStoreDidImportUbiquitousContentChanges, object:self.coordinator)
     }
     
     func storesWillChange (note:NSNotification) {
@@ -418,33 +420,32 @@ class CDHelper : NSObject  {
     }
     
     // MARK: - ICLOUD RESET (only for use during testing, not production)
-    func destroyAlliCloudDataForThisApplication () {
-
-        print("Attempting to destroy all iCloud content for this application, which could take a while...")
-        let persistentStoreCoordinators = [self.coordinator,self.seedCoordinator,self.sourceCoordinator]
-        for persistentStoreCoordinator in persistentStoreCoordinators {
-            for persistentStore in persistentStoreCoordinator.persistentStores {
-                self.unloadStore(ps: persistentStore)
-            }
-        }
-
-        if let _iCloudStoreURL = self.iCloudStoreURL {
-
-            do {
-
-                let options = [NSPersistentStoreUbiquitousContentNameKey:"Groceries"]
-                try NSPersistentStoreCoordinator.removeUbiquitousContentAndPersistentStore(at: _iCloudStoreURL as URL, options: options)
-                print("\n\n\n")
-                print("*          This application's iCloud content has been destroyed.          *")
-                print("*   On ALL devices, please delete any reference to this application from  *")
-                print("*                      Settings > iCloud > Storage                        *")
-                print("*                                                                         *")
-                print("* The application is force closed to ensure iCloud data is wiped cleanly. *")
-                print("\n\n\n")
-                abort()
-
-            } catch {print("\n\n FAILED to destroy iCloud content - \(error)")}
-        } else {print("\n\n FAILED to destroy iCloud content because _iCloudStoreURL is nil.")}
-    }
+//    func destroyAlliCloudDataForThisApplication () {
+//        print("Attempting to destroy all iCloud content for this application, which could take a while...")
+//
+//        let persistentStoreCoordinators = [self.coordinator,self.seedCoordinator,self.sourceCoordinator]
+//        for persistentStoreCoordinator in persistentStoreCoordinators {
+//            for persistentStore in persistentStoreCoordinator.persistentStores {
+//               _ = self.unloadStore(ps: persistentStore)
+//            }
+//        }
+//
+//        if let _iCloudStoreURL = self.iCloudStoreURL {
+//            do {
+//
+//                let options = [NSPersistentStoreUbiquitousContentNameKey:"opfietse.MotorcycleMaintenance"]
+//                try NSPersistentStoreCoordinator.removeUbiquitousContentAndPersistentStore(at: _iCloudStoreURL as URL, options: options)
+//                print("\n\n\n")
+//                print("*          This application's iCloud content has been destroyed.          *")
+//                print("*   On ALL devices, please delete any reference to this application from  *")
+//                print("*                      Settings > iCloud > Storage                        *")
+//                print("*                                                                         *")
+//                print("* The application is force closed to ensure iCloud data is wiped cleanly. *")
+//                print("\n\n\n")
+//                abort()
+//
+//            } catch {print("\n\n FAILED to destroy iCloud content - \(error)")}
+//        } else {print("\n\n FAILED to destroy iCloud content because _iCloudStoreURL is nil.")}
+//    }
     
 }
