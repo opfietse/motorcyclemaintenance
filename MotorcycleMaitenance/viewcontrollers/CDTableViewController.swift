@@ -129,7 +129,22 @@ class CDTableViewController: UITableViewController, NSFetchedResultsControllerDe
         let mcm: MotorcycleMaintenance = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleMaintenance", into: CDHelper.shared.context) as? MotorcycleMaintenance)!
         mcm.creationDate = Date()
         mcm.motorcycle = mc
-        
+
+        let task: Task = (NSEntityDescription.insertNewObject(forEntityName: "Task", into: CDHelper.shared.context) as? Task)!
+        task.id = "BF"
+        task.taskDescription = "Replace brake fluid"
+
+        let mctmt: MotorcycleTypeMaintenanceTask = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleTypeMaintenanceTask", into: CDHelper.shared.context) as? MotorcycleTypeMaintenanceTask)!
+        mctmt.mileageInterval = 10000
+        mctmt.motorcycleType = mct
+        mctmt.task = task
+
+        let mcmt: MotorcycleMaintenanceTask = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleMaintenanceTask", into: CDHelper.shared.context) as? MotorcycleMaintenanceTask)!
+        mcmt.completionDate = Date()
+        mcmt.milage = 9023
+        mcmt.motorcycleMaintenance = mcm
+        mcmt.motorcycleTypeMaintenanceTask = mctmt
+
         CDHelper.saveSharedContext()
     }
     

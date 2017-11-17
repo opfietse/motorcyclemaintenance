@@ -39,10 +39,10 @@ class MotorcycleTableViewController: CDTableViewController {
         self.performFetch()
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // pass any object as parameter, i.e. the tapped row
-        performSegue(withIdentifier: "mcToMcmSegue", sender: self.tableView.cellForRow(at: indexPath))
-    }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        // pass any object as parameter, i.e. the tapped row
+//        performSegue(withIdentifier: "mcToMcmSegue", sender: self.tableView.cellForRow(at: indexPath))
+//    }
     
     // MARK: - DATA SOURCE: UITableView
     //    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -56,7 +56,6 @@ class MotorcycleTableViewController: CDTableViewController {
     
     // MARK: - INTERACTION
     @IBAction func done (sender: AnyObject) {
-        
         if let parent = self.parent {
             parent.dismiss(animated: true, completion: nil)
         }
