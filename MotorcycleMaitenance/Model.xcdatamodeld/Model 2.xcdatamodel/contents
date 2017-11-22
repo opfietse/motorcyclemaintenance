@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="16G1036" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Motorcycle" representedClassName="Motorcycle" syncable="YES" codeGenerationType="class">
-        <attribute name="registration" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="registration" attributeType="String" syncable="YES"/>
         <attribute name="synchronizedWithBackend" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="motorcycleMaintenance" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="MotorcycleMaintenance" inverseName="motorcycle" inverseEntity="MotorcycleMaintenance" syncable="YES"/>
         <relationship name="motorcycleType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MotorcycleType" inverseName="motorcycles" inverseEntity="MotorcycleType" syncable="YES"/>
@@ -13,7 +13,7 @@
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="synchronizedWithBackend" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="motorcycle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Motorcycle" inverseName="motorcycleMaintenance" inverseEntity="Motorcycle" syncable="YES"/>
-        <relationship name="motorcycleMaintenanceTasks" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MotorcycleMaintenanceTask" inverseName="motorcycleMaintenance" inverseEntity="MotorcycleMaintenanceTask" syncable="YES"/>
+        <relationship name="motorcycleMaintenanceTasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MotorcycleMaintenanceTask" inverseName="motorcycleMaintenance" inverseEntity="MotorcycleMaintenanceTask" syncable="YES"/>
     </entity>
     <entity name="MotorcycleMaintenanceTask" representedClassName="MotorcycleMaintenanceTask" syncable="YES" codeGenerationType="class">
         <attribute name="completionDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -47,7 +47,7 @@
     </entity>
     <elements>
         <element name="Motorcycle" positionX="-63" positionY="9" width="128" height="105"/>
-        <element name="MotorcycleMaintenance" positionX="-18" positionY="54" width="128" height="30"/>
+        <element name="MotorcycleMaintenance" positionX="-18" positionY="54" width="128" height="150"/>
         <element name="MotorcycleMaintenanceTask" positionX="0" positionY="81" width="128" height="135"/>
         <element name="MotorcycleType" positionX="-63" positionY="-18" width="128" height="135"/>
         <element name="MotorcycleTypeMaintenanceTask" positionX="-36" positionY="36" width="128" height="135"/>

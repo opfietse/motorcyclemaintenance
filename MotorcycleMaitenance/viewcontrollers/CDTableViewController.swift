@@ -117,33 +117,61 @@ class CDTableViewController: UITableViewController, NSFetchedResultsControllerDe
     }
     
     func createRecords() {
-        let mct: MotorcycleType = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleType", into: CDHelper.shared.context) as? MotorcycleType)!
-        mct.make = "Moto Guzzi"
-        mct.model = "Bellagio"
-        mct.year = 2009
+        let mct1: MotorcycleType = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleType", into: CDHelper.shared.context) as? MotorcycleType)!
+        mct1.make = "Moto Guzzi"
+        mct1.model = "Bellagio"
+        mct1.year = 2009
         
-        let mc: Motorcycle = (NSEntityDescription.insertNewObject(forEntityName: "Motorcycle", into: CDHelper.shared.context) as? Motorcycle)!
-        mc.motorcycleType = mct
-        mc.registration = "MG-enzovoort"
+        let mc1: Motorcycle = (NSEntityDescription.insertNewObject(forEntityName: "Motorcycle", into: CDHelper.shared.context) as? Motorcycle)!
+        mc1.motorcycleType = mct1
+        mc1.registration = "MG-enzovoort"
         
-        let mcm: MotorcycleMaintenance = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleMaintenance", into: CDHelper.shared.context) as? MotorcycleMaintenance)!
-        mcm.creationDate = Date()
-        mcm.motorcycle = mc
+        let mcm1: MotorcycleMaintenance = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleMaintenance", into: CDHelper.shared.context) as? MotorcycleMaintenance)!
+        mcm1.creationDate = Date()
+        mcm1.motorcycle = mc1
 
-        let task: Task = (NSEntityDescription.insertNewObject(forEntityName: "Task", into: CDHelper.shared.context) as? Task)!
-        task.id = "BF"
-        task.taskDescription = "Replace brake fluid"
+        let task1: Task = (NSEntityDescription.insertNewObject(forEntityName: "Task", into: CDHelper.shared.context) as? Task)!
+        task1.id = "BF"
+        task1.taskDescription = "Replace brake fluid"
 
-        let mctmt: MotorcycleTypeMaintenanceTask = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleTypeMaintenanceTask", into: CDHelper.shared.context) as? MotorcycleTypeMaintenanceTask)!
-        mctmt.mileageInterval = 10000
-        mctmt.motorcycleType = mct
-        mctmt.task = task
+        let mctmt1: MotorcycleTypeMaintenanceTask = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleTypeMaintenanceTask", into: CDHelper.shared.context) as? MotorcycleTypeMaintenanceTask)!
+        mctmt1.mileageInterval = 10000
+        mctmt1.motorcycleType = mct1
+        mctmt1.task = task1
 
-        let mcmt: MotorcycleMaintenanceTask = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleMaintenanceTask", into: CDHelper.shared.context) as? MotorcycleMaintenanceTask)!
-        mcmt.completionDate = Date()
-        mcmt.milage = 9023
-        mcmt.motorcycleMaintenance = mcm
-        mcmt.motorcycleTypeMaintenanceTask = mctmt
+        let mcmt1: MotorcycleMaintenanceTask = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleMaintenanceTask", into: CDHelper.shared.context) as? MotorcycleMaintenanceTask)!
+        mcmt1.completionDate = Date()
+        mcmt1.milage = 9023
+        mcmt1.motorcycleMaintenance = mcm1
+        mcmt1.motorcycleTypeMaintenanceTask = mctmt1
+
+        let mct2: MotorcycleType = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleType", into: CDHelper.shared.context) as? MotorcycleType)!
+        mct2.make = "Ducati"
+        mct2.model = "Monster 110 Evo"
+        mct2.year = 2013
+        
+        let mc2: Motorcycle = (NSEntityDescription.insertNewObject(forEntityName: "Motorcycle", into: CDHelper.shared.context) as? Motorcycle)!
+        mc2.motorcycleType = mct2
+        mc2.registration = "DU-enzovoort"
+        
+        let mcm2: MotorcycleMaintenance = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleMaintenance", into: CDHelper.shared.context) as? MotorcycleMaintenance)!
+        mcm2.creationDate = Date()
+        mcm2.motorcycle = mc2
+        
+        let task2: Task = (NSEntityDescription.insertNewObject(forEntityName: "Task", into: CDHelper.shared.context) as? Task)!
+        task2.id = "EO"
+        task2.taskDescription = "Replace engine oil"
+        
+        let mctmt2: MotorcycleTypeMaintenanceTask = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleTypeMaintenanceTask", into: CDHelper.shared.context) as? MotorcycleTypeMaintenanceTask)!
+        mctmt2.mileageInterval = 11000
+        mctmt2.motorcycleType = mct2
+        mctmt2.task = task2
+        
+        let mcmt2: MotorcycleMaintenanceTask = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleMaintenanceTask", into: CDHelper.shared.context) as? MotorcycleMaintenanceTask)!
+        mcmt2.completionDate = Date()
+        mcmt2.milage = 9025
+        mcmt2.motorcycleMaintenance = mcm2
+        mcmt2.motorcycleTypeMaintenanceTask = mctmt2
 
         CDHelper.saveSharedContext()
     }

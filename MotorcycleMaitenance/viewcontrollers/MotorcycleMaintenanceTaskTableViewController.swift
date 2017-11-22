@@ -1,61 +1,46 @@
 //
-//  MotorcycleMaintenance.swift
+//  MotorcycleMaintenanceTaskTableViewController.swift
 //  MotorcycleMaitenance
 //
-//  Created by Mark Reuvekamp on 12/11/2017.
+//  Created by Mark Reuvekamp on 20/11/2017.
 //  Copyright © 2017 Mark Reuvekamp. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-class MotorcycleMaintenanceTableViewController: CDTableViewController {
-//    var currentMotorcycle: Motorcycle? {
-//        get {
-//            return 3.0 * sideLength
-//        }
-//        set {
-//            sideLength = newValue / 3.0
-//        }
-//    }
+class MotorcycleMaintenanceTaskTableViewController: CDTableViewController {
+    var currentMotorcycleMaintenance: MotorcycleMaintenance?
     
-    var currentMotorcycle: Motorcycle? = nil
-
-//    public func setC(mc: Motorcycle) {
-//        self.currentMotorcycle = mc
-//    }
-//
     // MARK: - CELL CONFIGURATION
     override func configureCell(cell: UITableViewCell, atIndexPath indexPath: IndexPath) {
         cell.accessoryType = UITableViewCellAccessoryType.none
         
-        if let motorcycleMaintenance = self.frc.object(at: indexPath) as? MotorcycleMaintenance {
+        if let motorcycleMaintenanceTask = self.frc.object(at: indexPath) as? MotorcycleMaintenanceTask {
             if let textLabel = cell.textLabel {
-                textLabel.text = motorcycleMaintenance.motorcycle!.registration! + " " + String(describing: (motorcycleMaintenance.creationDate)!)
+                textLabel.text = String(motorcycleMaintenanceTask.milage) + " " + String(describing: (motorcycleMaintenanceTask.completionDate)!)
             }
         }
     }
-    
+
     // MARK: - INITIALIZATION
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        print("init MCM ...")
-
         // CDTableViewController subclass customization
-        self.entity = "MotorcycleMaintenance"
-        self.sort = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        self.entity = "MotorcycleMaintenanceTask"
+        self.sort = [NSSortDescriptor(key: "completionDate", ascending: false)]
         self.fetchBatchSize = 25
-        self.cellIdentifier = "MCMCell"
+        self.cellIdentifier = "MCMTCell"
     }
-
+    
     // MARK: - VIEW
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "MotorcycleMaintenance"
-
-        if let _currentMotorcycle = currentMotorcycle {
-            self.filter = NSPredicate(format: "%K == %@", "motorcycle.registration", _currentMotorcycle.registration!)
+        self.navigationItem.title = "MotorcycleMaintenanceTask"
+        
+        if let _currentMotorcycleMaintenance = currentMotorcycleMaintenance {
+            self.filter = NSPredicate(format: "%K == %@", "motorcycleMaintenance.motorcycle.registration", _currentMotorcycleMaintenance.motorcycle!.registration!)
         } else {
             self.filter = nil
         }
@@ -82,30 +67,6 @@ class MotorcycleMaintenanceTableViewController: CDTableViewController {
     }
     
     // MARK: - SEGUE
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let a = segue.destination
-        print(a)
-        
-        var mcm: MotorcycleMaintenance? = nil
-        
-        if let cell = sender as? UITableViewCell {
-            let indexPath: IndexPath = self.tableView.indexPath(for: cell)!
-            mcm = self.frc.object(at: indexPath) as? MotorcycleMaintenance
-        } else {
-            let i = IndexPath(row: 0, section: 0)
-            //            i.row = 0
-            //            i.section = 0
-            mcm = self.frc.object(at: i) as? MotorcycleMaintenance
-        }
-        
-        
-        let mcmttvc: MotorcycleMaintenanceTaskTableViewController = a as! MotorcycleMaintenanceTaskTableViewController
-        mcmttvc.currentMotorcycleMaintenance = mcm!
-
-        print(String(describing: mcm))
-    }
-    
     //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     //        if let locationAtHomeVC = segue.destinationViewController as? LocationAtHomeVC {
     //
@@ -125,4 +86,5 @@ class MotorcycleMaintenanceTableViewController: CDTableViewController {
     //        }
     //    }
 }
+
 

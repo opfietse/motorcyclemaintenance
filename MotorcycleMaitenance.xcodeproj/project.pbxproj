@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6E1A526E1FB893B100F9CAFC /* MotorcycleMaintenanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A526D1FB893B100F9CAFC /* MotorcycleMaintenanceTableViewController.swift */; };
 		6E22E4411FB4B1B100BB3C3E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E22E4401FB4B1B100BB3C3E /* libsqlite3.tbd */; };
+		6EC00B541FC35C6D000A555D /* MotorcycleMaintenanceTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC00B531FC35C6D000A555D /* MotorcycleMaintenanceTaskTableViewController.swift */; };
 		9B4078931F93BDC6006C3B70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4078921F93BDC6006C3B70 /* AppDelegate.swift */; };
 		9B4078951F93BDC6006C3B70 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4078941F93BDC6006C3B70 /* FirstViewController.swift */; };
 		9B4078971F93BDC6006C3B70 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4078961F93BDC6006C3B70 /* SecondViewController.swift */; };
@@ -47,6 +48,7 @@
 		6E1A526D1FB893B100F9CAFC /* MotorcycleMaintenanceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotorcycleMaintenanceTableViewController.swift; sourceTree = "<group>"; };
 		6E22E4401FB4B1B100BB3C3E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		6E52C24A1FB983CD0097D6F9 /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
+		6EC00B531FC35C6D000A555D /* MotorcycleMaintenanceTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorcycleMaintenanceTaskTableViewController.swift; sourceTree = "<group>"; };
 		9B40788F1F93BDC6006C3B70 /* MotorcycleMaitenance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotorcycleMaitenance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B4078921F93BDC6006C3B70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B4078941F93BDC6006C3B70 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				9BCA8E5C1FAE1B2F000D8311 /* MigrationVC.swift */,
 				9BCA8E551FAE0BAC000D8311 /* CDTableViewController.swift */,
 				9BCA8E531FAE0B51000D8311 /* MotorcycleTableViewController.swift */,
+				6EC00B531FC35C6D000A555D /* MotorcycleMaintenanceTaskTableViewController.swift */,
 			);
 			path = viewcontrollers;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 			files = (
 				9B4078971F93BDC6006C3B70 /* SecondViewController.swift in Sources */,
 				9BCA8E541FAE0B51000D8311 /* MotorcycleTableViewController.swift in Sources */,
+				6EC00B541FC35C6D000A555D /* MotorcycleMaintenanceTaskTableViewController.swift in Sources */,
 				9BCA8E5D1FAE1B30000D8311 /* MigrationVC.swift in Sources */,
 				9B4078931F93BDC6006C3B70 /* AppDelegate.swift in Sources */,
 				9B4078951F93BDC6006C3B70 /* FirstViewController.swift in Sources */,

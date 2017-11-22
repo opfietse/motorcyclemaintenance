@@ -30,6 +30,7 @@ class MotorcycleTableViewController: CDTableViewController {
         self.entity = "Motorcycle"
         self.sort = [NSSortDescriptor(key: "registration", ascending: true)]
         self.fetchBatchSize = 25
+        self.cellIdentifier = "MCCell"
     }
     
     // MARK: - VIEW
@@ -62,10 +63,9 @@ class MotorcycleTableViewController: CDTableViewController {
     }
     
     // MARK: - SEGUE
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let a = segue.destination
-        print(a)
+        print("Dest: " + String(describing: a))
         
         var mc: Motorcycle? = nil
         
@@ -80,6 +80,10 @@ class MotorcycleTableViewController: CDTableViewController {
         }
         
         print(String(describing: mc))
+
+        let mcmtvc: MotorcycleMaintenanceTableViewController = a as! MotorcycleMaintenanceTableViewController
+        mcmtvc.currentMotorcycle = mc!
+        
 //        if let locationAtHomeVC = segue.destinationViewController as? LocationAtHomeVC {
 //
 //            if segue.identifier == "Add Object Segue" {
