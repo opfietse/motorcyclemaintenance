@@ -56,7 +56,7 @@ class MotorcycleMaintenanceTableViewController: CDTableViewController {
 
         if let _currentMotorcycle = currentMotorcycle {
             self.filter = NSPredicate(format: "%K == %@", "motorcycle.registration", _currentMotorcycle.registration!)
-            self.navigationItem.title = _currentMotorcycle.registration
+            self.navigationItem.title = _currentMotorcycle.registration! + " (\(_currentMotorcycle.motorcycleType?.model ?? "Unknown model"))"
         } else {
             self.filter = nil
         }
