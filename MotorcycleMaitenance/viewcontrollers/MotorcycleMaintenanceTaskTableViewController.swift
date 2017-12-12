@@ -18,7 +18,15 @@ class MotorcycleMaintenanceTaskTableViewController: CDTableViewController {
         
         if let motorcycleMaintenanceTask = self.frc.object(at: indexPath) as? MotorcycleMaintenanceTask {
             if let textLabel = cell.textLabel {
-                textLabel.text = String(motorcycleMaintenanceTask.milage) + " " + String(describing: (motorcycleMaintenanceTask.completionDate)!)
+                textLabel.text = motorcycleMaintenanceTask.motorcycleTypeMaintenanceTask?.task?.taskDescription
+            }
+
+            if let subtitleLabel = cell.detailTextLabel {
+                if let _completionDate = motorcycleMaintenanceTask.completionDate {
+                    subtitleLabel.text = "Completed at " + String(describing: _completionDate)
+                } else {
+                    subtitleLabel.text = "Not completed"
+                }
             }
         }
     }
@@ -38,9 +46,21 @@ class MotorcycleMaintenanceTaskTableViewController: CDTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "MotorcycleMaintenanceTask"
-        
+
         if let _currentMotorcycleMaintenance = currentMotorcycleMaintenance {
             self.filter = NSPredicate(format: "%K == %@", "motorcycleMaintenance.motorcycle.registration", _currentMotorcycleMaintenance.motorcycle!.registration!)
+           
+            var formattedCreationDate: String
+            
+            if let creationDate = _currentMotorcycleMaintenance.creationDate {
+                let dateFormatter = DateFormatter()
+                dateFormatter.locale = Locale(identifier: "nl_NL")
+                dateFormatter.setLocalizedDateFormatFromTemplate("dd-MM-yyyy")
+                formattedCreationDate = dateFormatter.string(from: creationDate)
+            } else {
+                formattedCreationDate = "Date unknown"
+            }
+            self.navigationItem.title = (_currentMotorcycleMaintenance.motorcycle?.registration)! + " " + formattedCreationDate
         } else {
             self.filter = nil
         }

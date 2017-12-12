@@ -109,9 +109,9 @@ class CDTableViewController: UITableViewController, NSFetchedResultsControllerDe
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let i = self.frc.sections![section].numberOfObjects
         
-        if (i == 0) {
-            createRecords()
-        }
+//        if (i == 0) {
+//            createRecords()
+//        }
         
         return i
     }
@@ -141,13 +141,13 @@ class CDTableViewController: UITableViewController, NSFetchedResultsControllerDe
 
         let mcmt1: MotorcycleMaintenanceTask = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleMaintenanceTask", into: CDHelper.shared.context) as? MotorcycleMaintenanceTask)!
         mcmt1.completionDate = Date()
-        mcmt1.milage = 9023
+        mcmt1.mileage = 9023
         mcmt1.motorcycleMaintenance = mcm1
         mcmt1.motorcycleTypeMaintenanceTask = mctmt1
 
         let mct2: MotorcycleType = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleType", into: CDHelper.shared.context) as? MotorcycleType)!
         mct2.make = "Ducati"
-        mct2.model = "Monster 110 Evo"
+        mct2.model = "Monster 1100 Evo"
         mct2.year = 2013
         
         let mc2: Motorcycle = (NSEntityDescription.insertNewObject(forEntityName: "Motorcycle", into: CDHelper.shared.context) as? Motorcycle)!
@@ -169,7 +169,7 @@ class CDTableViewController: UITableViewController, NSFetchedResultsControllerDe
         
         let mcmt2: MotorcycleMaintenanceTask = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleMaintenanceTask", into: CDHelper.shared.context) as? MotorcycleMaintenanceTask)!
         mcmt2.completionDate = Date()
-        mcmt2.milage = 9025
+        mcmt2.mileage = 9025
         mcmt2.motorcycleMaintenance = mcm2
         mcmt2.motorcycleTypeMaintenanceTask = mctmt2
 

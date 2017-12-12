@@ -1,0 +1,18 @@
+[
+ {
+ "id": "MOV",
+ "taskDescription": "Motorolie vervangen"
+ },
+ {
+ "id": "OFV",
+ "taskDescription": "Oliefilter vervangen"
+ },
+ {
+ "id": "BSC",
+ "taskDescription": "Bandenspanning controleren"
+ },
+ {
+ "id": "PDM",
+ "taskDescription": "Profieldiepte meten"
+ }
+]

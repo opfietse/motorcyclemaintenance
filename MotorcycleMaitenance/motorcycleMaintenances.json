@@ -1,0 +1,16 @@
+ [
+  {
+  "motorcycleRegistration": "15-MG-SK",
+  "creationDate": "2017-11-20T23:00:00Z",
+  "startDate": null,
+  "endDate": null,
+  "remarks": "Opmerking Duc"
+  },
+  {
+  "motorcycleRegistration": "14-MG-XG",
+  "creationDate": "2017-11-20T23:00:00Z",
+  "startDate": null,
+  "endDate": null,
+  "remarks": "Opmerking Moto Guzzi"
+  }
+  ]

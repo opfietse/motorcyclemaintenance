@@ -73,25 +73,25 @@ class CDMigration: NSObject {
     }
 
     // MARK: - MIGRATION
-//    func migrateStore(store:NSURL, sourceModel:NSManagedObjectModel, destinationModel:NSManagedObjectModel) {
-//        if let tempdir = store.deletingLastPathComponent {
-//            let tempStore = tempdir.appendingPathComponent("Temp.sqlite")
-//            let mappingModel = NSMappingModel(fromBundles: nil, forSourceModel: sourceModel, destinationModel: destinationModel)
-//            let migrationManager = NSMigrationManager(sourceModel: sourceModel, destinationModel: destinationModel)
-//            migrationManager.addObserver(self, forKeyPath: "migrationProgress", options: NSKeyValueObservingOptions.new, context: nil)
-//
-//            do {
-//                try migrationManager.migrateStore(from: store as URL, sourceType: NSSQLiteStoreType, options: nil, with: mappingModel, toDestinationURL: tempStore, destinationType: NSSQLiteStoreType, destinationOptions: nil)
-//                try replaceStore(oldStore: store, newStore: tempStore as NSURL)
-//
-//                print("SUCCESSFULLY MIGRATED \(store) to the Current Model")
-//
-//            } catch {
-//                print("FAILED MIGRATION: \(error)")
-//            }
-//            migrationManager.removeObserver(self, forKeyPath: "migrationProgress")
-//        } else {print("\(#function) FAILED to prepare temporary directory")}
-//    }
+    func migrateStore(store:NSURL, sourceModel:NSManagedObjectModel, destinationModel:NSManagedObjectModel) {
+        if let tempdir = store.deletingLastPathComponent {
+            let tempStore = tempdir.appendingPathComponent("Temp.sqlite")
+            let mappingModel = NSMappingModel(from: nil, forSourceModel: sourceModel, destinationModel: destinationModel)
+            let migrationManager = NSMigrationManager(sourceModel: sourceModel, destinationModel: destinationModel)
+            migrationManager.addObserver(self, forKeyPath: "migrationProgress", options: NSKeyValueObservingOptions.new, context: nil)
+
+            do {
+                try migrationManager.migrateStore(from: store as URL, sourceType: NSSQLiteStoreType, options: nil, with: mappingModel, toDestinationURL: tempStore, destinationType: NSSQLiteStoreType, destinationOptions: nil)
+                try replaceStore(oldStore: store, newStore: tempStore as NSURL)
+
+                print("SUCCESSFULLY MIGRATED \(store) to the Current Model")
+
+            } catch {
+                print("FAILED MIGRATION: \(error)")
+            }
+            migrationManager.removeObserver(self, forKeyPath: "migrationProgress")
+        } else {print("\(#function) FAILED to prepare temporary directory")}
+    }
 
 //    func migrateStoreWithProgressUI(store:NSURL, sourceModel:NSManagedObjectModel, destinationModel:NSManagedObjectModel) {
 //        // Show migration progress view preventing the user from using the app

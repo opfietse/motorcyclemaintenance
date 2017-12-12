@@ -24,7 +24,7 @@ class CDHelper : NSObject  {
         let urls = fm.urls(for: .documentDirectory, in: .userDomainMask)
         return urls[urls.count - 1]
     }()
-
+    
     lazy var localStoreURL: URL? = {
         if let url = self.storesDirectory?.appendingPathComponent("LocalStore.sqlite") {
             print("localStoreURL = \(url)")
@@ -32,7 +32,7 @@ class CDHelper : NSObject  {
         }
         return nil
     }()
-
+    
     lazy var iCloudStoreURL: URL? = {
         if let url = self.storesDirectory?.appendingPathComponent("iCloud.sqlite") {
             print("iCloudStoreURL = \(url)")
@@ -40,7 +40,7 @@ class CDHelper : NSObject  {
         }
         return nil
     }()
-
+    
     lazy var sourceStoreURL: URL? = {
         if let url = Bundle.main.url(forResource: "DefaultData", withExtension: "sqlite") {
             print("sourceStoreURL = \(url)")
@@ -48,7 +48,7 @@ class CDHelper : NSObject  {
         }
         return nil
     }()
-
+    
     lazy var seedStoreURL: URL? = {
         if let url = self.storesDirectory?.appendingPathComponent("LocalStore.sqlite") {
             print("seedStoreURL = \(url)")
@@ -56,7 +56,7 @@ class CDHelper : NSObject  {
         }
         return nil
     }()
-
+    
     lazy var modelURL: URL = {
         let bundle = Bundle.main
         if let url = bundle.url(forResource: "Model", withExtension: "momd") {
@@ -105,7 +105,7 @@ class CDHelper : NSObject  {
     lazy var model: NSManagedObjectModel = {
         return NSManagedObjectModel(contentsOf:self.modelURL as URL)!
     }()
-        
+    
     // MARK: - COORDINATOR
     lazy var coordinator: NSPersistentStoreCoordinator = {
         return NSPersistentStoreCoordinator(managedObjectModel:self.model)
@@ -118,11 +118,11 @@ class CDHelper : NSObject  {
     lazy var seedCoordinator:NSPersistentStoreCoordinator = {
         return NSPersistentStoreCoordinator(managedObjectModel:self.model)
     }()
-        
+    
     // MARK: - STORE
     lazy var localStore: NSPersistentStore? = {
         let useMigrationManager = false
-
+        
         if let _localStoreURL = self.localStoreURL {
             if useMigrationManager == true &&
                 CDMigration.shared.storeExistsAtPath(storeURL: _localStoreURL) &&
@@ -143,36 +143,35 @@ class CDHelper : NSObject  {
         }
     }()
     
-//    lazy var iCloudStore: NSPersistentStore? = {
-//
-//       // Change contentNameKey for your own applications
-//        let contentNameKey = "opfietse.MotorcycleMaintenance"
-//
-//        print("Using '\(contentNameKey)' as the iCloud Ubiquitous Content Name Key")
-//        let options:[NSObject:AnyObject] =
-//            [NSMigratePersistentStoresAutomaticallyOption as NSObject:1 as AnyObject,
-//             NSInferMappingModelAutomaticallyOption as NSObject:1 as AnyObject,
-//             NSPersistentStoreUbiquitousContentNameKey as NSObject:contentNameKey as AnyObject
-//                  //,NSPersistentStoreUbiquitousContentURLKey:"ChangeLogs" // Optional since iOS7
-//                    ]
-//        var _iCloudStore: NSPersistentStore?
-//
-//        do {
-//            _iCloudStore = try self.coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: self.iCloudStoreURL, options: options)
-//            return _iCloudStore
-//        } catch {
-//            print("\(#function) ERROR adding iCloud store : \(error)")
-//            return nil
-//        }
-//    }()
+    //    lazy var iCloudStore: NSPersistentStore? = {
+    //
+    //       // Change contentNameKey for your own applications
+    //        let contentNameKey = "opfietse.MotorcycleMaintenance"
+    //
+    //        print("Using '\(contentNameKey)' as the iCloud Ubiquitous Content Name Key")
+    //        let options:[NSObject:AnyObject] =
+    //            [NSMigratePersistentStoresAutomaticallyOption as NSObject:1 as AnyObject,
+    //             NSInferMappingModelAutomaticallyOption as NSObject:1 as AnyObject,
+    //             NSPersistentStoreUbiquitousContentNameKey as NSObject:contentNameKey as AnyObject
+    //                  //,NSPersistentStoreUbiquitousContentURLKey:"ChangeLogs" // Optional since iOS7
+    //                    ]
+    //        var _iCloudStore: NSPersistentStore?
+    //
+    //        do {
+    //            _iCloudStore = try self.coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: self.iCloudStoreURL, options: options)
+    //            return _iCloudStore
+    //        } catch {
+    //            print("\(#function) ERROR adding iCloud store : \(error)")
+    //            return nil
+    //        }
+    //    }()
     
     lazy var sourceStore: NSPersistentStore? = {
-            
         let options:[NSObject:AnyObject] = [NSReadOnlyPersistentStoreOption as NSObject:1 as AnyObject]
-            
+        
         var _sourceStore:NSPersistentStore?
         do {
-           // self.sourceCoordinator.addP
+            // self.sourceCoordinator.addP
             _sourceStore = try self.sourceCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: self.sourceStoreURL, options: options)
             return _sourceStore
         } catch {
@@ -181,9 +180,9 @@ class CDHelper : NSObject  {
     }()
     
     lazy var seedStore: NSPersistentStore? = {
-            
+        
         let options:[NSObject:AnyObject] = [NSReadOnlyPersistentStoreOption as NSObject:1 as AnyObject]
-            
+        
         var _seedStore:NSPersistentStore?
         do {
             _seedStore = try self.seedCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: self.seedStoreURL, options: options)
@@ -192,9 +191,9 @@ class CDHelper : NSObject  {
             return nil
         }
     }()
-
+    
     func unloadStore (ps:NSPersistentStore) -> Bool {
-            
+        
         if let psc = ps.persistentStoreCoordinator {
             
             do {
@@ -223,45 +222,47 @@ class CDHelper : NSObject  {
     }
     
     func setupCoreData() {
-            
-        /*// Model Migration
-        if let _localStoreURL = self.localStoreURL {
-            CDMigration.shared.migrateStoreIfNecessary(_localStoreURL, destinationModel: self.model)
-        } */
+        
+        print("\(#function) started...")
 
+        /*// Model Migration
+         if let _localStoreURL = self.localStoreURL {
+         CDMigration.shared.migrateStoreIfNecessary(_localStoreURL, destinationModel: self.model)
+         } */
+        
         // Load Local Store
-     //    self.setDefaultDataStoreAsInitialStore()
-     //   _ = self.sourceStore
+       // self.setDefaultDataStoreAsInitialStore()
+        //   _ = self.sourceStore
         _ = self.localStore
-            
+        
         /*// Load iCloud Store
-        if let _ = self.iCloudStore {
-            
-            // self.destroyAlliCloudDataForThisApplication()
-            
-            if let path = self.seedStoreURL?.path {
-                // Merge existing data with iCloud
-                if NSFileManager.defaultManager().fileExistsAtPath(path) {
-                    if let _ = self.seedStore {
-                        self.confirmMergeWithiCloud()
-                    } else {print("Failed to instantiate seed store")}
-                } else {print("Failed to find seed store at '\(path)'")}
-            } else {print("Failed to prepare seed store path")}
-        } else {print("Failed to load iCloud store")} */
+         if let _ = self.iCloudStore {
+         
+         // self.destroyAlliCloudDataForThisApplication()
+         
+         if let path = self.seedStoreURL?.path {
+         // Merge existing data with iCloud
+         if NSFileManager.defaultManager().fileExistsAtPath(path) {
+         if let _ = self.seedStore {
+         self.confirmMergeWithiCloud()
+         } else {print("Failed to instantiate seed store")}
+         } else {print("Failed to find seed store at '\(path)'")}
+         } else {print("Failed to prepare seed store path")}
+         } else {print("Failed to load iCloud store")} */
         
         // Import Default Data
-        /* if let _localStoreURL = self.localStoreURL {
-            CDImporter.shared.checkIfDefaultDataNeedsImporting(_localStoreURL, type: NSSQLiteStoreType)
-        } else {print("ERROR getting localStoreURL in \(__FUNCTION__)")}*/
+        if let _localStoreURL = self.localStoreURL {
+            CDImporter.shared.checkIfDefaultDataNeedsImporting(url: _localStoreURL, type: NSSQLiteStoreType)
+        } else {print("ERROR getting localStoreURL in \(#function)")}
     }
-        
+    
     // MARK: - SAVING
     class func save(moc:NSManagedObjectContext) {
         
         moc.performAndWait {
-         
-            if moc.hasChanges {
             
+            if moc.hasChanges {
+                
                 do {
                     try moc.save()
                     //print("SAVED context \(moc.description)")
@@ -282,30 +283,33 @@ class CDHelper : NSObject  {
     
     // MARK: - DEFAULT STORE
     func setDefaultDataStoreAsInitialStore () {
-         let url = self.localStoreURL
-         let path = url!.path
-            if FileManager.default.fileExists(atPath: path) == false {
-                if let defaultDataURL = Bundle.main.url(forResource: "DefaultData", withExtension: "sqlite") {
-                    do {
-                        try FileManager.default.copyItem(at: defaultDataURL, to: url!)
-                        print("A copy of DefaultData.sqlite was set as the initial store for \(String(describing: url))")
-                    } catch {
-                        print("\(#function) ERROR setting DefaultData.sqlite as the initial store: : \(error)")
-                    }
-                } else {print("\(#function) ERROR: Could not find DefaultData.sqlite in the application bundle.")}
-            } 
+        let url = self.localStoreURL
+        let path = url!.path
+        
+        if FileManager.default.fileExists(atPath: path) == false {
+            if let defaultDataURL = Bundle.main.url(forResource: "DefaultData", withExtension: "sqlite") {
+                do {
+                    try FileManager.default.copyItem(at: defaultDataURL, to: url!)
+                    print("A copy of DefaultData.sqlite was set as the initial store for \(String(describing: url))")
+                } catch {
+                    print("\(#function) ERROR setting DefaultData.sqlite as the initial store: : \(error)")
+                }
+            } else {
+                print("\(#function) ERROR: Could not find DefaultData.sqlite in the application bundle.")
+            }
+        }
         
         print("\(#function) ERROR: Failed to prepare URL in \(#function)")
     } 
     
     // MARK: - ICLOUD
     func iCloudAccountIsSignedIn() -> Bool {
-
+        
         if let token = FileManager.default.ubiquityIdentityToken {
             print("** This device is SIGNED IN to iCloud with token \(token) **")
             return true
         }
-
+        
         print("\rThis application cannot use iCloud because it is either signed out or is disabled for this App.")
         print("If the device is signed in and you still get this error, verify the following:")
         print("1) iCloud Documents is ticked in Xcode (Application Target > Capabilities > iCloud.)")
@@ -347,72 +351,72 @@ class CDHelper : NSObject  {
             } catch {print("ERROR saving parentContext \(self.parentContext.description) - \(error)")}
         }
     }
-
+    
     func storesDidChange (note:NSNotification) {
         // Refresh UI
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SomethingChanged"), object: nil)
     }
-
+    
     func iCloudDataChanged (note:NSNotification) {
         // Refresh UI Context
         self.context.mergeChanges(fromContextDidSave: note as Notification)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SomethingChanged"), object: nil)
     }
-
+    
     func seedDataToiCloud () {
         self.seedContext.perform {
-//
-//            print("*** STARTED DEEP COPY FROM SEED STORE TO ICLOUD STORE ***")
-//            _ = self.seedStore
-//            let entities = ["LocationAtHome","LocationAtShop","Unit","Item"]
-//            CDImporter.deepCopyEntities(entities, from: self.seedContext, to: self.importContext)
-//
-//            self.context.perform {
-//
-//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SomethingChanged"), object: nil)
-//                print("*** FINISHED DEEP COPY FROM SEED STORE TO ICLOUD STORE ***")
-//
-//                // Remove seed store
-//                if let _seedStoreURL = self.seedStoreURL {
-//
-//                    if let wal = _seedStoreURL.path?.stringByAppendingString("-wal") {
-//                        self.removeFileAtURL(NSURL(fileURLWithPath: wal))
-//                    }
-//
-//                    if let shm = _seedStoreURL.path?.stringByAppendingString("-shm") {
-//                        self.removeFileAtURL(NSURL(fileURLWithPath: shm))
-//                    }
-//                    self.removeFileAtURL(url: _seedStoreURL)
-//                }
-//            }
+            //
+            //            print("*** STARTED DEEP COPY FROM SEED STORE TO ICLOUD STORE ***")
+            //            _ = self.seedStore
+            //            let entities = ["LocationAtHome","LocationAtShop","Unit","Item"]
+            //            CDImporter.deepCopyEntities(entities, from: self.seedContext, to: self.importContext)
+            //
+            //            self.context.perform {
+            //
+            //                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SomethingChanged"), object: nil)
+            //                print("*** FINISHED DEEP COPY FROM SEED STORE TO ICLOUD STORE ***")
+            //
+            //                // Remove seed store
+            //                if let _seedStoreURL = self.seedStoreURL {
+            //
+            //                    if let wal = _seedStoreURL.path?.stringByAppendingString("-wal") {
+            //                        self.removeFileAtURL(NSURL(fileURLWithPath: wal))
+            //                    }
+            //
+            //                    if let shm = _seedStoreURL.path?.stringByAppendingString("-shm") {
+            //                        self.removeFileAtURL(NSURL(fileURLWithPath: shm))
+            //                    }
+            //                    self.removeFileAtURL(url: _seedStoreURL)
+            //                }
+            //            }
         }
     }
-
+    
     func confirmMergeWithiCloud () {
-
+        
         if let path = self.seedStoreURL?.path {
-
+            
             if FileManager.default.fileExists(atPath: path) {
-
+                
                 let alert = UIAlertController(title: "Merge with iCloud?", message: "This will move your existing data into iCloud.", preferredStyle: .alert)
                 let mergeButton = UIAlertAction(title: "Merge", style: .default, handler: { (action) -> Void in
-
+                    
                     self.seedDataToiCloud()
                 })
                 let dontMergeButton = UIAlertAction(title: "Don't Merge", style: .default, handler: { (action) -> Void in
-
+                    
                     // Don't do anything. In your own applications, store this decision.
                 })
                 alert.addAction(mergeButton)
                 alert.addAction(dontMergeButton)
-
+                
                 // PRESENT
                 DispatchQueue.main.async(execute: { () -> Void in
                     if let initialVC = UIApplication.shared.keyWindow?.rootViewController {
                         initialVC.present(alert, animated: true, completion: nil)
                     } else {print("%@ FAILED to prepare the initial view controller",#function)}
                 })
-
+                
             } else {
                 print("Skipped unnecessary migration of seed store to iCloud (there's no store file).")
             }
@@ -420,32 +424,32 @@ class CDHelper : NSObject  {
     }
     
     // MARK: - ICLOUD RESET (only for use during testing, not production)
-//    func destroyAlliCloudDataForThisApplication () {
-//        print("Attempting to destroy all iCloud content for this application, which could take a while...")
-//
-//        let persistentStoreCoordinators = [self.coordinator,self.seedCoordinator,self.sourceCoordinator]
-//        for persistentStoreCoordinator in persistentStoreCoordinators {
-//            for persistentStore in persistentStoreCoordinator.persistentStores {
-//               _ = self.unloadStore(ps: persistentStore)
-//            }
-//        }
-//
-//        if let _iCloudStoreURL = self.iCloudStoreURL {
-//            do {
-//
-//                let options = [NSPersistentStoreUbiquitousContentNameKey:"opfietse.MotorcycleMaintenance"]
-//                try NSPersistentStoreCoordinator.removeUbiquitousContentAndPersistentStore(at: _iCloudStoreURL as URL, options: options)
-//                print("\n\n\n")
-//                print("*          This application's iCloud content has been destroyed.          *")
-//                print("*   On ALL devices, please delete any reference to this application from  *")
-//                print("*                      Settings > iCloud > Storage                        *")
-//                print("*                                                                         *")
-//                print("* The application is force closed to ensure iCloud data is wiped cleanly. *")
-//                print("\n\n\n")
-//                abort()
-//
-//            } catch {print("\n\n FAILED to destroy iCloud content - \(error)")}
-//        } else {print("\n\n FAILED to destroy iCloud content because _iCloudStoreURL is nil.")}
-//    }
+    //    func destroyAlliCloudDataForThisApplication () {
+    //        print("Attempting to destroy all iCloud content for this application, which could take a while...")
+    //
+    //        let persistentStoreCoordinators = [self.coordinator,self.seedCoordinator,self.sourceCoordinator]
+    //        for persistentStoreCoordinator in persistentStoreCoordinators {
+    //            for persistentStore in persistentStoreCoordinator.persistentStores {
+    //               _ = self.unloadStore(ps: persistentStore)
+    //            }
+    //        }
+    //
+    //        if let _iCloudStoreURL = self.iCloudStoreURL {
+    //            do {
+    //
+    //                let options = [NSPersistentStoreUbiquitousContentNameKey:"opfietse.MotorcycleMaintenance"]
+    //                try NSPersistentStoreCoordinator.removeUbiquitousContentAndPersistentStore(at: _iCloudStoreURL as URL, options: options)
+    //                print("\n\n\n")
+    //                print("*          This application's iCloud content has been destroyed.          *")
+    //                print("*   On ALL devices, please delete any reference to this application from  *")
+    //                print("*                      Settings > iCloud > Storage                        *")
+    //                print("*                                                                         *")
+    //                print("* The application is force closed to ensure iCloud data is wiped cleanly. *")
+    //                print("\n\n\n")
+    //                abort()
+    //
+    //            } catch {print("\n\n FAILED to destroy iCloud content - \(error)")}
+    //        } else {print("\n\n FAILED to destroy iCloud content because _iCloudStoreURL is nil.")}
+    //    }
     
 }

@@ -17,7 +17,11 @@ class MotorcycleTableViewController: CDTableViewController {
         
         if let motorcycle = self.frc.object(at: indexPath) as? Motorcycle {
             if let textLabel = cell.textLabel {
-                textLabel.text = motorcycle.registration! + " " + (motorcycle.motorcycleType?.make)! + " " + (motorcycle.motorcycleType?.model)!
+                textLabel.text = (motorcycle.motorcycleType?.make)! + " " + (motorcycle.motorcycleType?.model!)!
+            }
+
+            if let subtitleLabel = cell.detailTextLabel {
+                subtitleLabel.text = motorcycle.registration
             }
         }
     }

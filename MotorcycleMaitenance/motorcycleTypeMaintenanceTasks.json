@@ -1,0 +1,26 @@
+[
+ {
+ "motorcycleType": {
+   "make": "Ducati",
+   "model": "Monster 1100 Evo",
+   "year": 2012
+   },
+ "tasks": [
+           {
+           "mileageInterval": 6000,
+           "timeInterval": 1,
+           "taskId": "MOV"
+           },
+           {
+           "mileageInterval": 6000,
+           "timeInterval": 1,
+           "taskId": "OFV"
+           },
+           {
+           "mileageInterval": 6000,
+           "timeInterval": 1,
+           "taskId": "BSC"
+           }
+   ]
+ }
+]

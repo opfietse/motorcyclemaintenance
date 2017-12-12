@@ -1,0 +1,14 @@
+[
+ {
+ "registration": "15-MG-SK",
+ "motorcycleTypeMake": "Ducati",
+ "motorcycleTypeModel": "Monster 1100 Evo",
+ "motorcycleTypeYear": 2012
+ },
+ {
+ "registration": "14-MG-XG",
+ "motorcycleTypeMake": "Moto Guzzi",
+ "motorcycleTypeModel": "Bellagio",
+ "motorcycleTypeYear": 2009
+ }
+]

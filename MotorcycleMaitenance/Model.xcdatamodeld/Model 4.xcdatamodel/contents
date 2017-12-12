@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="16G1036" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="17B48" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Motorcycle" representedClassName="Motorcycle" syncable="YES" codeGenerationType="class">
         <attribute name="registration" attributeType="String" syncable="YES"/>
         <attribute name="synchronizedWithBackend" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
@@ -7,7 +7,7 @@
         <relationship name="motorcycleType" maxCount="1" deletionRule="Nullify" destinationEntity="MotorcycleType" inverseName="motorcycles" inverseEntity="MotorcycleType" syncable="YES"/>
     </entity>
     <entity name="MotorcycleMaintenance" representedClassName="MotorcycleMaintenance" syncable="YES" codeGenerationType="class">
-        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="creationDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="remarks" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -17,7 +17,7 @@
     </entity>
     <entity name="MotorcycleMaintenanceTask" representedClassName="MotorcycleMaintenanceTask" syncable="YES" codeGenerationType="class">
         <attribute name="completionDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="milage" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="mileage" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="remarks" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="synchronizedWithBackend" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="motorcycleMaintenance" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MotorcycleMaintenance" inverseName="motorcycleMaintenanceTasks" inverseEntity="MotorcycleMaintenance" syncable="YES"/>
@@ -40,10 +40,15 @@
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Task" inverseName="motorcycleTypeMaintenanceTasks" inverseEntity="Task" syncable="YES"/>
     </entity>
     <entity name="Task" representedClassName="Task" syncable="YES" codeGenerationType="class">
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="synchronizedWithBackend" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="taskDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="taskDescription" attributeType="String" syncable="YES"/>
         <relationship name="motorcycleTypeMaintenanceTasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MotorcycleTypeMaintenanceTask" inverseName="task" inverseEntity="MotorcycleTypeMaintenanceTask" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
         <element name="Motorcycle" positionX="-63" positionY="9" width="128" height="105"/>
@@ -51,6 +56,6 @@
         <element name="MotorcycleMaintenanceTask" positionX="0" positionY="81" width="128" height="135"/>
         <element name="MotorcycleType" positionX="-63" positionY="-18" width="128" height="135"/>
         <element name="MotorcycleTypeMaintenanceTask" positionX="-36" positionY="36" width="128" height="135"/>
-        <element name="Task" positionX="-45" positionY="27" width="128" height="105"/>
+        <element name="Task" positionX="-342" positionY="-108" width="128" height="103"/>
     </elements>
 </model>

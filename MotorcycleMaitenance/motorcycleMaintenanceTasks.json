@@ -1,0 +1,22 @@
+[
+ {
+ "motorcycleMaintenance": {
+   "motorcycleRegistration": "15-MG-SK",
+   "creationDate": "2017-11-20T23:00:00Z"
+ },
+ "tasks": [
+           {
+           "taskId": "MOV",
+           "completionDate": "2017-11-20T23:00:00Z",
+           "mileage": 9023,
+           "remarks": "Opmerking Duc MOV 9023"
+           },
+           {
+           "taskId": "OFV",
+           "completionDate": "2017-11-20T23:00:00Z",
+           "mileage": 9023,
+           "remarks": "Opmerking Duc OFV 9023"
+           }
+           ]
+ }
+ ]
