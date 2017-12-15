@@ -57,6 +57,7 @@
 		6E07CC971FC7258E009C3913 /* Model 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 3.xcdatamodel"; sourceTree = "<group>"; };
 		6E1A526D1FB893B100F9CAFC /* MotorcycleMaintenanceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotorcycleMaintenanceTableViewController.swift; sourceTree = "<group>"; };
 		6E22E4401FB4B1B100BB3C3E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		6E29B53E1FE424CB00B7245F /* Model 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 5.xcdatamodel"; sourceTree = "<group>"; };
 		6E52C24A1FB983CD0097D6F9 /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
 		6EAA90FF1FC9B66500454798 /* Model 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 4.xcdatamodel"; sourceTree = "<group>"; };
 		6EC00B531FC35C6D000A555D /* MotorcycleMaintenanceTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorcycleMaintenanceTaskTableViewController.swift; sourceTree = "<group>"; };
@@ -670,12 +671,13 @@
 		9BC8D7C41F93F0D800DA1989 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				6E29B53E1FE424CB00B7245F /* Model 5.xcdatamodel */,
 				6EAA90FF1FC9B66500454798 /* Model 4.xcdatamodel */,
 				6E07CC971FC7258E009C3913 /* Model 3.xcdatamodel */,
 				6E52C24A1FB983CD0097D6F9 /* Model 2.xcdatamodel */,
 				9BC8D7C51F93F0D800DA1989 /* Model.xcdatamodel */,
 			);
-			currentVersion = 6EAA90FF1FC9B66500454798 /* Model 4.xcdatamodel */;
+			currentVersion = 6E29B53E1FE424CB00B7245F /* Model 5.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
