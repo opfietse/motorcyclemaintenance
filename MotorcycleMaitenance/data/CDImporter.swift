@@ -227,7 +227,7 @@ class CDImporter : NSObject, XMLParserDelegate {
                     let importContext = CDHelper.shared.importContext
                     
                     for motorcycleType in motorcycleTypes {
-                        print("Task id \(motorcycleType.make)")
+                        print("Mc make \(motorcycleType.make)")
                         
                         let motorcycleType1: MotorcycleType = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleType", into: importContext) as? MotorcycleType)!
                         motorcycleType1.make = motorcycleType.make
@@ -321,7 +321,7 @@ class CDImporter : NSObject, XMLParserDelegate {
                                     
                                     print("McTMT \(mcTypeMaintenanceTask.motorcycleType?.model ?? "Defval")")
                                     print("Task \(mcTypeMaintenanceTask.task?.id ?? "DefvalTask")")
-
+                                    
                                     let motorcycleMaintenanceTask1: MotorcycleMaintenanceTask = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleMaintenanceTask", into: importContext) as? MotorcycleMaintenanceTask)!
                                     
                                     motorcycleMaintenanceTask1.motorcycleMaintenance = mcm
@@ -359,6 +359,12 @@ class CDImporter : NSObject, XMLParserDelegate {
         
         do {
             let fetchedMotorcycles = try CDHelper.shared.importContext.fetch(motorcyclesFetch) as! [Motorcycle]
+
+            if fetchedMotorcycles.count > 1 {
+                print("More than one motorcycle found for registration \(registration)")
+                return nil
+            }
+            
             if let mc = fetchedMotorcycles.first {
                 return mc
             }
@@ -380,6 +386,12 @@ class CDImporter : NSObject, XMLParserDelegate {
         
         do {
             let fetchedMotorcycleMaintenances = try CDHelper.shared.importContext.fetch(motorcycleMaintenancesFetch) as! [MotorcycleMaintenance]
+
+            if fetchedMotorcycleMaintenances.count > 1 {
+                print("More than one motorcycle maintenance found for registration \(registration) and date \(creationDate)")
+                return nil
+            }
+
             if let mcm = fetchedMotorcycleMaintenances.first {
                 return mcm
             }
@@ -399,6 +411,12 @@ class CDImporter : NSObject, XMLParserDelegate {
         
         do {
             let fetchedTasks = try CDHelper.shared.importContext.fetch(tasksFetch) as! [Task]
+
+            if fetchedTasks.count > 1 {
+                print("More than one task found for id \(taskId)")
+                return nil
+            }
+
             if let task = fetchedTasks.first {
                 return task
             }
@@ -410,17 +428,23 @@ class CDImporter : NSObject, XMLParserDelegate {
     }
     
     func fetchMotorcycleTypeMaintenanceTask(motorcycleType: MotorcycleType , taskId: String) -> MotorcycleTypeMaintenanceTask? {
-        let tasksFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "MotorcycleTypeMaintenanceTask")
+        let motorcycleTypeMaintenanceTasksFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "MotorcycleTypeMaintenanceTask")
         
         let mcTypePredicate = NSPredicate(format: "motorcycleType == %@", motorcycleType)
         let taskIdPredicate = NSPredicate(format: "task.id == %@", taskId)
         let motorcycleTypeMaintenanceTaskPredicate = NSCompoundPredicate(type: .and, subpredicates: [mcTypePredicate, taskIdPredicate])
         
-        tasksFetch.predicate = motorcycleTypeMaintenanceTaskPredicate
+        motorcycleTypeMaintenanceTasksFetch.predicate = motorcycleTypeMaintenanceTaskPredicate
         
         do {
-            let fetchedTasks = try CDHelper.shared.importContext.fetch(tasksFetch) as! [MotorcycleTypeMaintenanceTask]
-            if let task = fetchedTasks.first {
+            let fetchedMotorcycleTypeMaintenanceTask = try CDHelper.shared.importContext.fetch(motorcycleTypeMaintenanceTasksFetch) as! [MotorcycleTypeMaintenanceTask]
+
+            if fetchedMotorcycleTypeMaintenanceTask.count > 1 {
+                print("More than one motorcycle type maintenance task found for motorcycle type \(motorcycleType.model ?? "No mctype model!") id \(taskId)")
+                return nil
+            }
+            
+            if let task = fetchedMotorcycleTypeMaintenanceTask.first {
                 return task
             }
         } catch {
@@ -442,6 +466,12 @@ class CDImporter : NSObject, XMLParserDelegate {
         
         do {
             let fetchedMotorcycleTypes = try CDHelper.shared.importContext.fetch(motorcycleTypesFetch) as! [MotorcycleType]
+
+            if fetchedMotorcycleTypes.count > 1 {
+                print("More than one motorcycle type found for make \(make), model \(model) and year \(year)")
+                return nil
+            }
+            
             if let mcType = fetchedMotorcycleTypes.first {
                 return mcType
             }
@@ -467,7 +497,7 @@ class CDImporter : NSObject, XMLParserDelegate {
                     let importContext = CDHelper.shared.importContext
                     
                     for motorcycle in motorcycles {
-                        print("Task id \(motorcycle.registration)")
+                        print("Mc reg. \(motorcycle.registration)")
                         
                         if self.fetchMotorcycle(registration: motorcycle.registration) != nil {
                             print("\(motorcycle.registration) already exists")
@@ -513,7 +543,7 @@ class CDImporter : NSObject, XMLParserDelegate {
                     let importContext = CDHelper.shared.importContext
                     
                     for motorcycleMaintenance in motorcycleMaintenances {
-                        print("Task id \(motorcycleMaintenance.motorcycleRegistration)")
+                        print("Mc reg. \(motorcycleMaintenance.motorcycleRegistration)")
                         
                         //                    if self.fetchMotorcycle(registration: motorcycle.registration) != nil {
                         //                        print("\(motorcycle.registration) already exists")
@@ -544,305 +574,4 @@ class CDImporter : NSObject, XMLParserDelegate {
             }
         }
     }
-    
-    // MARK: - XML PARSER
-    //    var parser:XMLParser?
-    //    func importFromXML (url:URL) {
-    //
-    //        self.parser = XMLParser(contentsOf: url)
-    //        if let _parser = self.parser {
-    //            _parser.delegate = self
-    //
-    //            //  NSLog("START PARSE OF %@",url)
-    //            _parser.parse()
-    //            NotificationCenter.default.post(name: Notification.Name(rawValue: "SomethingChanged"), object: nil)
-    //            // NSLog("END PARSE OF %@",url)
-    //        }
-    //    }
-    
-    //    // MARK: - DELEGATE: NSXMLParser
-    //    func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
-    //        NSLog("ERROR PARSING: %@",parseError.localizedDescription)
-    //    }
-    //
-    //    // NOTE: - The code in the didStartElement function is customized for 'Groceries'
-    //    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-    //
-    //        //        let importContext = CDHelper.shared.importContext
-    //        //        importContext.performAndWait {
-    //        //
-    //        //            // Process only the 'Item' element in the XML file
-    //        //            if elementName == "Item" {
-    //        //
-    //        //                // STEP 1a: Insert a unique 'Item' object
-    //        //                var item:Item?
-    //        //                if let itemName = attributeDict["name"] {
-    //        //                    item = CDOperation.insertUniqueObject("Item", context: importContext, uniqueAttributes: ["name":itemName], additionalAttributes: nil) as? Item
-    //        //                    if let _item = item {_item.name = itemName}
-    //        //                }
-    //        //
-    //        //                // STEP 1b: Insert a unique 'Unit' object
-    //        //                var unit:Unit?
-    //        //                if let unitName = attributeDict["unit"] {
-    //        //                    unit = CDOperation.insertUniqueObject("Unit", context: importContext, uniqueAttributes: ["name":unitName], additionalAttributes: nil) as? Unit
-    //        //                    if let _unit = unit {_unit.name = unitName}
-    //        //                }
-    //        //
-    //        //                // STEP 1c: Insert a unique 'LocationAtHome' object
-    //        //                var locationAtHome:LocationAtHome?
-    //        //                if let storedIn = attributeDict["locationAtHome"] {
-    //        //                    locationAtHome = CDOperation.insertUniqueObject("LocationAtHome", context: importContext, uniqueAttributes: ["storedIn":storedIn], additionalAttributes: nil) as? LocationAtHome
-    //        //                    if let _locationAtHome = locationAtHome {_locationAtHome.storedIn = storedIn}
-    //        //                }
-    //        //
-    //        //                // STEP 1d: Insert a unique 'LocationAtShop' object
-    //        //                var locationAtShop:LocationAtShop?
-    //        //                if let aisle = attributeDict["locationAtShop"] {
-    //        //                    locationAtShop = CDOperation.insertUniqueObject("LocationAtShop", context: importContext, uniqueAttributes: ["aisle":aisle], additionalAttributes: nil) as? LocationAtShop
-    //        //                    if let _locationAtShop = locationAtShop {_locationAtShop.aisle = aisle}
-    //        //                }
-    //        //
-    //        //                // STEP 2: Manually add extra attribute values.
-    //        //                if let _item = item {_item.listed = NSNumber(bool: false)}
-    //        //
-    //        //                // STEP 3: Create relationships
-    //        //                if let _item = item {
-    //        //
-    //        //                    _item.unit = unit
-    //        //                    _item.locationAtHome = locationAtHome
-    //        //                    _item.locationAtShop = locationAtShop
-    //        //                }
-    //        //
-    //        //                // STEP 4: Save new objects to the persistent store.
-    //        //                CDHelper.save(moc: importContext)
-    //        //
-    //        //                // STEP 5: Turn objects into faults to save memory
-    //        //                if let _item = item { CDFaulter.faultObject(_item, moc: importContext)}
-    //        //                if let _unit = unit { CDFaulter.faultObject(_unit, moc: importContext)}
-    //        //                if let _locationAtHome = locationAtHome { CDFaulter.faultObject(_locationAtHome, moc: importContext)}
-    //        //                if let _locationAtShop = locationAtShop { CDFaulter.faultObject(_locationAtShop, moc: importContext)}
-    //        //            }
-    //        //        }
-    //    }
-    //
-    //    // MARK: - DEEP COPY
-    //    class func selectedUniqueAttributesForEntity (entityName:String) -> [String]? {
-    //
-    //        // Return an array of attribute names to be considered unique for an entity.
-    //        // Multiple unique attributes are supported.
-    //        // Only use attributes whose values are alphanumeric.
-    //
-    //        switch (entityName) {
-    //        case "Item"          :return ["name"]
-    //        case "Item_Photo"    :return ["data"]
-    //        case "Unit"          :return ["name"]
-    //        case "LocationAtHome":return ["storedIn"]
-    //        case "LocationAtShop":return ["aisle"]
-    //        default:
-    //            break;
-    //        }
-    //        return nil
-    //    }
-    //
-    //    class func objectInfo (object:NSManagedObject) -> String {
-    //
-    //        if let entityName = object.entity.name {
-    //
-    //            var attributes:NSString = ""
-    //
-    //            if let uniqueAttributes = CDImporter.selectedUniqueAttributesForEntity(entityName: entityName) {
-    //
-    //                for attribute in uniqueAttributes {
-    //                    if let valueForKey = object.value(forKey: attribute) as? NSObject {
-    //                        attributes = "\(attributes)\(attribute) \(valueForKey) " as NSString
-    //                    }
-    //                }
-    //
-    //                // trim trailing space
-    //                attributes = attributes.trimmingCharacters(in: NSCharacterSet.whitespaces) as NSString
-    //
-    //                return "\(entityName) with \(attributes)"
-    //            } else {print("ERROR: \(#function) could not find any uniqueAttributes")}
-    //        } else {print("ERROR: \(#function) could not find an entityName")}
-    //
-    //        return ""
-    //    }
-    //
-    //    class func copyUniqueObject (sourceObject:NSManagedObject, targetContext:NSManagedObjectContext) -> NSManagedObject? {
-    //
-    //        if let entityName = sourceObject.entity.name {
-    //
-    //            if let uniqueAttributes = CDImporter.selectedUniqueAttributesForEntity(entityName: entityName) {
-    //
-    //                // PREPARE unique attributes to copy
-    //                var uniqueAttributesFromSource:[String:AnyObject] = [:]
-    //                for uniqueAttribute in uniqueAttributes {
-    //                    uniqueAttributesFromSource[uniqueAttribute] = sourceObject.value(forKey: uniqueAttribute) as AnyObject
-    //                }
-    //
-    //                // PREPARE additional attributes to copy
-    //                var additionalAttributesFromSource:[String:AnyObject] = [:]
-    //                if let attributesByName:[String:AnyObject] = sourceObject.entity.attributesByName {
-    //                    for (additionalAttribute, _) in attributesByName {
-    //                        additionalAttributesFromSource[additionalAttribute] = sourceObject.value(forKey: additionalAttribute) as AnyObject
-    //                    }
-    //                }
-    //
-    //                // COPY attributes to new object
-    //                let copiedObject = CDOperation.insertUniqueObject(entityName: entityName, context: targetContext, uniqueAttributes: uniqueAttributesFromSource, additionalAttributes: additionalAttributesFromSource)
-    //
-    //                return copiedObject
-    //            } else {print("ERROR: \(#function) could not find any selected unique attributes for the '\(entityName)' entity")}
-    //        } else {print("ERROR: \(#function) could not find an entity name for the given object '\(sourceObject)'")}
-    //        return nil
-    //    }
-    //
-    //    class func establishToOneRelationship (relationshipName:String,from object:NSManagedObject, to relatedObject:NSManagedObject) {
-    //        // SKIP establishing an existing relationship
-    //        if object.value(forKey: relationshipName) != nil {
-    //            print("SKIPPED \(#function) because the relationship already exists")
-    //            return
-    //        }
-    //
-    //        if let targetContext = object.managedObjectContext {
-    //
-    //            // ESTABLISH the relationship
-    //            object.setValue(relatedObject, forKey: relationshipName)
-    //            print("    A copy of \(CDImporter.objectInfo(object: object)) is related via To-One \(relationshipName) relationship to \(CDImporter.objectInfo(object: relatedObject))")
-    //
-    //            // REMOVE the relationship from memory after it is committed to disk
-    //            CDHelper.save(moc: targetContext)
-    //            targetContext.refresh(object, mergeChanges: false)
-    //            targetContext.refresh(relatedObject, mergeChanges: false)
-    //        } else {print("ERROR: \(#function) could not get a targetContext")}
-    //    }
-    //
-    //    class func establishToManyRelationship (relationshipName:String,from object:NSManagedObject, sourceSet:NSMutableSet) {
-    //        // SKIP establishing an existing relationship
-    //        if object.value(forKey: relationshipName) != nil {
-    //            print("SKIPPED \(#function) because the relationship already exists")
-    //            return
-    //        }
-    //
-    //        if let targetContext = object.managedObjectContext {
-    //
-    //            let targetSet = object.mutableSetValue(forKey: relationshipName)
-    //
-    //            targetSet.enumerateObjects({ (relatedObject, stop) -> Void in
-    //
-    //                if let theRelatedObject = relatedObject as? NSManagedObject {
-    //
-    //                    if let copiedRelatedObject = CDImporter.copyUniqueObject(sourceObject: theRelatedObject, targetContext: targetContext) {
-    //
-    //                        targetSet.add(copiedRelatedObject)
-    //                        print("    A copy of \(CDImporter.objectInfo(object: object)) is related via To-Many \(relationshipName) relationship to \(CDImporter.objectInfo(object: copiedRelatedObject))")
-    //
-    //                        // REMOVE the relationship from memory after it is committed to disk
-    //                        CDHelper.save(moc: targetContext)
-    //                        targetContext.refresh(object, mergeChanges: false)
-    //                        targetContext.refresh(theRelatedObject, mergeChanges: false)
-    //                    } else {print("ERROR: \(#function) could not get a copiedRelatedObject")}
-    //                } else {print("ERROR: \(#function) could not get theRelatedObject")}
-    //            })
-    //        } else {print("ERROR: \(#function) could not get a targetContext")}
-    //    }
-    //
-    //    class func establishOrderedToManyRelationship (relationshipName:String,from object:NSManagedObject, sourceSet:NSMutableOrderedSet) {
-    //
-    //        // SKIP establishing an existing relationship
-    //        if object.value(forKey: relationshipName) != nil {
-    //            print("SKIPPED \(#function) because the relationship already exists")
-    //            return
-    //        }
-    //
-    //        if let targetContext = object.managedObjectContext {
-    //
-    //            let targetSet = object.mutableOrderedSetValue(forKey: relationshipName)
-    //
-    //            targetSet.enumerateObjects { (relatedObject, index, stop) -> Void in
-    //
-    //                if let theRelatedObject = relatedObject as? NSManagedObject {
-    //
-    //                    if let copiedRelatedObject = CDImporter.copyUniqueObject(sourceObject: theRelatedObject, targetContext: targetContext) {
-    //
-    //                        targetSet.add(copiedRelatedObject)
-    //                        print("    A copy of \(CDImporter.objectInfo(object: object)) is related via Ordered To-Many \(relationshipName) relationship to \(CDImporter.objectInfo(object: copiedRelatedObject))'")
-    //
-    //                        // REMOVE the relationship from memory after it is committed to disk
-    //                        CDHelper.save(moc: targetContext)
-    //                        targetContext.refresh(object, mergeChanges: false)
-    //                        targetContext.refresh(theRelatedObject, mergeChanges: false)
-    //                    } else {print("ERROR: \(#function) could not get a copiedRelatedObject")}
-    //                } else {print("ERROR: \(#function) could not get theRelatedObject")}
-    //            }
-    //        } else {print("ERROR: \(#function) could not get a targetContext")}
-    //    }
-    //
-    //    class func copyRelationshipsFromObject(sourceObject:NSManagedObject, to targetContext:NSManagedObjectContext) {
-    //        if let copiedObject = CDImporter.copyUniqueObject(sourceObject: sourceObject, targetContext: targetContext) {
-    //
-    //            let relationships = sourceObject.entity.relationshipsByName // [String : NSRelationshipDescription]
-    //
-    //            for (_, relationship) in relationships {
-    //
-    //                if relationship.isToMany && relationship.isOrdered {
-    //
-    //                    // COPY To-Many Ordered Relationship
-    //                    let sourceSet = sourceObject.mutableOrderedSetValue(forKey: relationship.name)
-    //                    CDImporter.establishOrderedToManyRelationship(relationshipName: relationship.name, from: copiedObject, sourceSet: sourceSet)
-    //
-    //                } else if relationship.isToMany && relationship.isOrdered == false {
-    //
-    //                    // COPY To-Many Relationship
-    //                    let sourceSet = sourceObject.mutableSetValue(forKey: relationship.name)
-    //                    CDImporter.establishToManyRelationship(relationshipName: relationship.name, from: copiedObject, sourceSet: sourceSet)
-    //
-    //                } else {
-    //
-    //                    // COPY To-One Relationship
-    //                    if let relatedSourceObject = sourceObject.value(forKey: relationship.name) as? NSManagedObject {
-    //
-    //                        if let relatedCopiedObject = CDImporter.copyUniqueObject(sourceObject: relatedSourceObject, targetContext: targetContext) {
-    //
-    //                            CDImporter.establishToOneRelationship(relationshipName: relationship.name, from: copiedObject, to: relatedCopiedObject)
-    //
-    //                        } else {print("ERROR: \(#function) could not get a relatedCopiedObject")}
-    //                    } else {print("ERROR: \(#function) could not get a relatedSourceObject")}
-    //                }
-    //            }
-    //        } else {
-    //            print("ERROR: \(#function) could not find or create an object to copy relationships to.")
-    //
-    //        }
-    //    }
-    //
-    //    class func deepCopyEntities(entities:[String], from sourceContext:NSManagedObjectContext, to targetContext:NSManagedObjectContext) {
-    //        for entityName in entities {
-    //            print("DEEP COPYING '\(entityName)' objects to target context...")
-    //            if let sourceObjects = CDOperation.objectsForEntity(entityName: entityName, context: sourceContext, filter: nil, sort: nil) as? [NSManagedObject] {
-    //
-    //                for sourceObject in sourceObjects {
-    //                    print("DEEP COPYING OBJECT: \(CDImporter.objectInfo(object: sourceObject))")
-    //                    _ = CDImporter.copyUniqueObject(sourceObject: sourceObject, targetContext: targetContext)
-    //                    CDImporter.copyRelationshipsFromObject(sourceObject: sourceObject, to: targetContext)
-    //                }
-    //            } else {print("ERROR: \(#function) could not find any sourceObjects")}
-    //            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SomethingChanged"), object: nil)
-    //        }
-    //    }
-    //
-    //    class func triggerDeepCopy (sourceContext:NSManagedObjectContext, targetContext:NSManagedObjectContext, mainContext:NSManagedObjectContext) {
-    //
-    //        sourceContext.perform {
-    //            CDImporter.deepCopyEntities(entities: ["Item","Unit","LocationAtHome", "LocationAtShop"], from: sourceContext, to: targetContext)
-    //
-    //            mainContext.perform {
-    //                // Trigger interface refresh
-    //                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SomethingChanged"), object: nil)
-    //            }
-    //
-    //            print("*** FINISHED DEEP COPY FROM DEFAULT DATA PERSISTENT STORE ***")
-    //        }
-    //    }
 }
-

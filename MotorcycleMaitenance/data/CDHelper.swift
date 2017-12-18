@@ -258,7 +258,6 @@ class CDHelper : NSObject  {
     
     // MARK: - SAVING
     class func save(moc:NSManagedObjectContext) {
-        
         moc.performAndWait {
             
             if moc.hasChanges {
@@ -277,6 +276,7 @@ class CDHelper : NSObject  {
             }
         }
     }
+
     class func saveSharedContext() {
         save(moc: shared.context)
     }
