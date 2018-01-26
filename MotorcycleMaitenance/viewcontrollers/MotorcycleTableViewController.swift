@@ -19,7 +19,7 @@ class MotorcycleTableViewController: CDTableViewController {
             if let textLabel = cell.textLabel {
                 textLabel.text = (motorcycle.motorcycleType?.make)! + " " + (motorcycle.motorcycleType?.model!)!
             }
-
+            
             if let subtitleLabel = cell.detailTextLabel {
                 subtitleLabel.text = motorcycle.registration
             }
@@ -44,10 +44,10 @@ class MotorcycleTableViewController: CDTableViewController {
         self.performFetch()
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        // pass any object as parameter, i.e. the tapped row
-//        performSegue(withIdentifier: "mcToMcmSegue", sender: self.tableView.cellForRow(at: indexPath))
-//    }
+    //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //        // pass any object as parameter, i.e. the tapped row
+    //        performSegue(withIdentifier: "mcToMcmSegue", sender: self.tableView.cellForRow(at: indexPath))
+    //    }
     
     // MARK: - DATA SOURCE: UITableView
     //    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -78,31 +78,21 @@ class MotorcycleTableViewController: CDTableViewController {
             mc = self.frc.object(at: indexPath) as? Motorcycle
         } else {
             let i = IndexPath(row: 0, section: 0)
-//            i.row = 0
-//            i.section = 0
+            //            i.row = 0
+            //            i.section = 0
             mc = self.frc.object(at: i) as? Motorcycle
         }
         
-        print(String(describing: mc))
-
-        let mcmtvc: MotorcycleMaintenanceTableViewController = a as! MotorcycleMaintenanceTableViewController
-        mcmtvc.currentMotorcycle = mc!
+        print("MC: " + String(describing: mc))
         
-//        if let locationAtHomeVC = segue.destinationViewController as? LocationAtHomeVC {
-//
-//            if segue.identifier == "Add Object Segue" {
-//
-//                let object = NSEntityDescription.insertNewObject(forEntityName: "LocationAtHome", into: CDHelper.shared.context)
-//                locationAtHomeVC.segueObject = object
-//
-//            } else if segue.identifier == "Edit Object Segue" {
-//
-//                if let indexPath = self.tableView.indexPathForSelectedRow {
-//                    if let object = self.frc.object(at: indexPath) as? NSManagedObject {
-//                        locationAtHomeVC.segueObject = object
-//                    }
-//                }
-//            } else {print("Unidentified Segue Attempted!")}
-//        }
+        // TODO Check segue name
+        if let segueIdentifier = segue.identifier {
+            if segueIdentifier == "mcToMcmSegue" {
+                let mcmtvc: MotorcycleMaintenanceTableViewController = a as! MotorcycleMaintenanceTableViewController
+                mcmtvc.currentMotorcycle = mc!
+            }
+            
+            // mcToAddMcmTasksSegue
+        }
     }
 }

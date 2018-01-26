@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6E1A526E1FB893B100F9CAFC /* MotorcycleMaintenanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A526D1FB893B100F9CAFC /* MotorcycleMaintenanceTableViewController.swift */; };
 		6E22E4411FB4B1B100BB3C3E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E22E4401FB4B1B100BB3C3E /* libsqlite3.tbd */; };
+		6E698C87200529DD00C48722 /* AddMotorcycleMaintanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E698C86200529DD00C48722 /* AddMotorcycleMaintanceViewController.swift */; };
 		6EC00B541FC35C6D000A555D /* MotorcycleMaintenanceTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC00B531FC35C6D000A555D /* MotorcycleMaintenanceTaskTableViewController.swift */; };
 		6EC0A7DA1FC8720900A3CBFE /* CDImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0A7D91FC8720900A3CBFE /* CDImporter.swift */; };
 		6EC0A7DC1FC889DA00A3CBFE /* CDOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0A7DB1FC889DA00A3CBFE /* CDOperation.swift */; };
@@ -59,6 +60,8 @@
 		6E22E4401FB4B1B100BB3C3E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		6E29B53E1FE424CB00B7245F /* Model 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 5.xcdatamodel"; sourceTree = "<group>"; };
 		6E52C24A1FB983CD0097D6F9 /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
+		6E698C86200529DD00C48722 /* AddMotorcycleMaintanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMotorcycleMaintanceViewController.swift; sourceTree = "<group>"; };
+		6E8BDCB72019B3B400882FD5 /* Model 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 6.xcdatamodel"; sourceTree = "<group>"; };
 		6EAA90FF1FC9B66500454798 /* Model 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 4.xcdatamodel"; sourceTree = "<group>"; };
 		6EC00B531FC35C6D000A555D /* MotorcycleMaintenanceTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorcycleMaintenanceTaskTableViewController.swift; sourceTree = "<group>"; };
 		6EC0A7D91FC8720900A3CBFE /* CDImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDImporter.swift; sourceTree = "<group>"; };
@@ -200,6 +203,7 @@
 				9BCA8E551FAE0BAC000D8311 /* CDTableViewController.swift */,
 				9BCA8E531FAE0B51000D8311 /* MotorcycleTableViewController.swift */,
 				6EC00B531FC35C6D000A555D /* MotorcycleMaintenanceTaskTableViewController.swift */,
+				6E698C86200529DD00C48722 /* AddMotorcycleMaintanceViewController.swift */,
 			);
 			path = viewcontrollers;
 			sourceTree = "<group>";
@@ -364,6 +368,7 @@
 				9B4078951F93BDC6006C3B70 /* FirstViewController.swift in Sources */,
 				9BCA8E561FAE0BAC000D8311 /* CDTableViewController.swift in Sources */,
 				6E1A526E1FB893B100F9CAFC /* MotorcycleMaintenanceTableViewController.swift in Sources */,
+				6E698C87200529DD00C48722 /* AddMotorcycleMaintanceViewController.swift in Sources */,
 				6EC0A7DA1FC8720900A3CBFE /* CDImporter.swift in Sources */,
 				9BCA8E5B1FAE1A5F000D8311 /* CDMigration.swift in Sources */,
 				9BCA8E591FAE0C61000D8311 /* CDHelper.swift in Sources */,
@@ -671,13 +676,14 @@
 		9BC8D7C41F93F0D800DA1989 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				6E8BDCB72019B3B400882FD5 /* Model 6.xcdatamodel */,
 				6E29B53E1FE424CB00B7245F /* Model 5.xcdatamodel */,
 				6EAA90FF1FC9B66500454798 /* Model 4.xcdatamodel */,
 				6E07CC971FC7258E009C3913 /* Model 3.xcdatamodel */,
 				6E52C24A1FB983CD0097D6F9 /* Model 2.xcdatamodel */,
 				9BC8D7C51F93F0D800DA1989 /* Model.xcdatamodel */,
 			);
-			currentVersion = 6E29B53E1FE424CB00B7245F /* Model 5.xcdatamodel */;
+			currentVersion = 6E8BDCB72019B3B400882FD5 /* Model 6.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

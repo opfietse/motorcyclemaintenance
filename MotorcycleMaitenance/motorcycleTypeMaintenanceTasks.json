@@ -1,10 +1,10 @@
 [
  {
  "motorcycleType": {
-   "make": "Ducati",
-   "model": "Monster 1100 Evo",
-   "year": 2012
-   },
+ "make": "Ducati",
+ "model": "Monster 1100 Evo",
+ "year": 2012
+ },
  "tasks": [
            {
            "mileageInterval": 6000,
@@ -17,10 +17,29 @@
            "taskId": "OFV"
            },
            {
+           "mileageInterval": 0,
+           "timeInterval": 1,
+           "taskId": "DRV"
+           }
+           ]
+ },
+ {
+ "motorcycleType": {
+ "make": "Moto Guzzi",
+ "model": "Bellagio",
+ "year": 2009
+ },
+ "tasks": [
+           {
            "mileageInterval": 6000,
            "timeInterval": 1,
            "taskId": "BSC"
+           },
+           {
+           "mileageInterval": 21000,
+           "timeInterval": 1,
+           "taskId": "COV"
            }
-   ]
+           ]
  }
 ]

@@ -105,9 +105,22 @@ class CDImporter : NSObject, XMLParserDelegate {
         return true // default to true to prevent a default data import when an error occurs
     }
     
+    func atLeastOneJsonFileExists() -> Bool {
+        if let storesDirectory = CDHelper.shared.storesDirectory {
+            for file in [ "tasks.json", "motorcycleTypes.json", "motorcycleTypeMaintenanceTasks.json", "motorcycleMaintenanceTasks.json", "motorcycles.json", "motorcycleMaintenances.json" ] {
+                let url = storesDirectory.appendingPathComponent(file)
+                
+                if FileManager.default.fileExists(atPath: url.path) {
+                    return true
+                }
+            }
+        }
+        
+        return false
+    }
+    
     func checkIfDefaultDataNeedsImporting (url:URL, type:String) {
-        if CDImporter.isDefaultDataAlreadyImportedForStoreWithURL(url: url, type: type) == false {
-            
+        if atLeastOneJsonFileExists() {
             let alert = UIAlertController(title: "Import Default Data?", message: "If you've never used this application before then some default data might help you understand how to use it. Tap 'Import' to import default data. Tap 'Cancel' to skip the import, especially if you've done this before on your other devices.", preferredStyle: .alert)
             
             let importButton = UIAlertAction(title: "Import", style: .destructive, handler: { (action) -> Void in
@@ -118,22 +131,10 @@ class CDImporter : NSObject, XMLParserDelegate {
                 self.importMotorcycleMaintenances()
                 self.importMotorcycleMaintenanceTasks()
                 
-                //                // Import data
-                //                if let url = Bundle.main.url(forResource: "DefaultData", withExtension: "xml") {
-                //                    CDHelper.shared.importContext.perform {
-                //                        print("Attempting DefaultData.xml Import...")
-                //                        self.importFromXML(url: url)
-                //                        //print("Attempting DefaultData.sqlite Import...")
-                //                        //CDImporter.triggerDeepCopy(CDHelper.shared.sourceContext, targetContext: CDHelper.shared.importContext, mainContext: CDHelper.shared.context)
-                //                    }
-                //                } else {
-                //                    print("DefaultData.xml not found")
-                //                }
-                
                 // Set the data as imported
-                if let store = CDHelper.shared.localStore {
-                    self.setDefaultDataAsImportedForStore(store: store)
-                }
+//                if let store = CDHelper.shared.localStore {
+//                    self.setDefaultDataAsImportedForStore(store: store)
+//                }
             })
             
             let skipButton = UIAlertAction(title: "Skip", style: .default, handler: { (action) -> Void in
@@ -142,6 +143,7 @@ class CDImporter : NSObject, XMLParserDelegate {
                     self.setDefaultDataAsImportedForStore(store: store)
                 }
             })
+
             alert.addAction(importButton)
             alert.addAction(skipButton)
             
@@ -173,11 +175,11 @@ class CDImporter : NSObject, XMLParserDelegate {
     // MARK: - JSON files
     func importJsonTasks() {
         if let storesDirectory = CDHelper.shared.storesDirectory {
-            //            let tasksUrl = storesDirectory.appendingPathComponent("tasks.json")
             let url = storesDirectory.appendingPathComponent("tasks.json")
             print("URL path: \(url.path)")
             print("URL absolute path: \(url.absoluteString)")
-            if FileManager.default.fileExists(atPath: url.path) {//Bundle.main.url(forResource: "tasks", withExtension: "json") {
+
+            if FileManager.default.fileExists(atPath: url.path) {
                 print("File tasks.json found: \(url)")
                 
                 do {
@@ -215,7 +217,8 @@ class CDImporter : NSObject, XMLParserDelegate {
     func importMotorcycleTypes() {
         if let storesDirectory = CDHelper.shared.storesDirectory {
             let url = storesDirectory.appendingPathComponent("motorcycleTypes.json")
-            if FileManager.default.fileExists(atPath: url.path) {//Bundle.main.url(forResource: "motorcycleTypes", withExtension: "json") {
+
+            if FileManager.default.fileExists(atPath: url.path) {
                 print("File motorcycleTypes.json found: \(url)")
                 
                 do {
@@ -252,7 +255,8 @@ class CDImporter : NSObject, XMLParserDelegate {
     func importMotorcycleTypeMaintenanceTasks() {
         if let storesDirectory = CDHelper.shared.storesDirectory {
             let url = storesDirectory.appendingPathComponent("motorcycleTypeMaintenanceTasks.json")
-            if FileManager.default.fileExists(atPath: url.path) {//Bundle.main.url(forResource: "motorcycleTypeMaintenanceTasks", withExtension: "json") {
+
+            if FileManager.default.fileExists(atPath: url.path) {
                 print("File motorcycleTypeMaintenanceTasks found: \(url)")
                 
                 do {
@@ -298,7 +302,8 @@ class CDImporter : NSObject, XMLParserDelegate {
     func importMotorcycleMaintenanceTasks() {
         if let storesDirectory = CDHelper.shared.storesDirectory {
             let url = storesDirectory.appendingPathComponent("motorcycleMaintenanceTasks.json")
-            if FileManager.default.fileExists(atPath: url.path) {//Bundle.main.url(forResource: "motorcycleMaintenanceTasks", withExtension: "json") {
+
+            if FileManager.default.fileExists(atPath: url.path) {
                 print("File motorcycleMaintenanceTasks found: \(url)")
                 
                 do {
@@ -322,13 +327,13 @@ class CDImporter : NSObject, XMLParserDelegate {
                                     print("McTMT \(mcTypeMaintenanceTask.motorcycleType?.model ?? "Defval")")
                                     print("Task \(mcTypeMaintenanceTask.task?.id ?? "DefvalTask")")
                                     
-                                    let motorcycleMaintenanceTask1: MotorcycleMaintenanceTask = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleMaintenanceTask", into: importContext) as? MotorcycleMaintenanceTask)!
+                                    let motorcycleMaintenanceTask: MotorcycleMaintenanceTask = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleMaintenanceTask", into: importContext) as? MotorcycleMaintenanceTask)!
                                     
-                                    motorcycleMaintenanceTask1.motorcycleMaintenance = mcm
-                                    motorcycleMaintenanceTask1.motorcycleTypeMaintenanceTask = mcTypeMaintenanceTask
-                                    motorcycleMaintenanceTask1.completionDate = mcTask.completionDate
-                                    motorcycleMaintenanceTask1.mileage = mcTask.mileage
-                                    motorcycleMaintenanceTask1.remarks = mcTask.remarks
+                                    motorcycleMaintenanceTask.motorcycleMaintenance = mcm
+                                    motorcycleMaintenanceTask.motorcycleTypeMaintenanceTask = mcTypeMaintenanceTask
+                                    motorcycleMaintenanceTask.completionDate = mcTask.completionDate
+                                    motorcycleMaintenanceTask.mileage = mcTask.mileage
+                                    motorcycleMaintenanceTask.remarks = mcTask.remarks
                                 } else {
                                     print("mcTask with \(mcTask.taskId) not found")
                                 }
@@ -359,7 +364,7 @@ class CDImporter : NSObject, XMLParserDelegate {
         
         do {
             let fetchedMotorcycles = try CDHelper.shared.importContext.fetch(motorcyclesFetch) as! [Motorcycle]
-
+            
             if fetchedMotorcycles.count > 1 {
                 print("More than one motorcycle found for registration \(registration)")
                 return nil
@@ -386,12 +391,12 @@ class CDImporter : NSObject, XMLParserDelegate {
         
         do {
             let fetchedMotorcycleMaintenances = try CDHelper.shared.importContext.fetch(motorcycleMaintenancesFetch) as! [MotorcycleMaintenance]
-
+            
             if fetchedMotorcycleMaintenances.count > 1 {
                 print("More than one motorcycle maintenance found for registration \(registration) and date \(creationDate)")
                 return nil
             }
-
+            
             if let mcm = fetchedMotorcycleMaintenances.first {
                 return mcm
             }
@@ -411,12 +416,12 @@ class CDImporter : NSObject, XMLParserDelegate {
         
         do {
             let fetchedTasks = try CDHelper.shared.importContext.fetch(tasksFetch) as! [Task]
-
+            
             if fetchedTasks.count > 1 {
                 print("More than one task found for id \(taskId)")
                 return nil
             }
-
+            
             if let task = fetchedTasks.first {
                 return task
             }
@@ -438,7 +443,7 @@ class CDImporter : NSObject, XMLParserDelegate {
         
         do {
             let fetchedMotorcycleTypeMaintenanceTask = try CDHelper.shared.importContext.fetch(motorcycleTypeMaintenanceTasksFetch) as! [MotorcycleTypeMaintenanceTask]
-
+            
             if fetchedMotorcycleTypeMaintenanceTask.count > 1 {
                 print("More than one motorcycle type maintenance task found for motorcycle type \(motorcycleType.model ?? "No mctype model!") id \(taskId)")
                 return nil
@@ -466,7 +471,7 @@ class CDImporter : NSObject, XMLParserDelegate {
         
         do {
             let fetchedMotorcycleTypes = try CDHelper.shared.importContext.fetch(motorcycleTypesFetch) as! [MotorcycleType]
-
+            
             if fetchedMotorcycleTypes.count > 1 {
                 print("More than one motorcycle type found for make \(make), model \(model) and year \(year)")
                 return nil
@@ -485,7 +490,8 @@ class CDImporter : NSObject, XMLParserDelegate {
     func importMotorcycles() {
         if let storesDirectory = CDHelper.shared.storesDirectory {
             let url = storesDirectory.appendingPathComponent("motorcycles.json")
-            if FileManager.default.fileExists(atPath: url.path) {//Bundle.main.url(forResource: "motorcycles", withExtension: "json") {
+
+            if FileManager.default.fileExists(atPath: url.path) {
                 print("File motorcycles.json found: \(url)")
                 
                 do {
@@ -529,7 +535,7 @@ class CDImporter : NSObject, XMLParserDelegate {
     func importMotorcycleMaintenances() {
         if let storesDirectory = CDHelper.shared.storesDirectory {
             let url = storesDirectory.appendingPathComponent("motorcycleMaintenances.json")
-            if FileManager.default.fileExists(atPath: url.path) {//Bundle.main.url(forResource: "motorcycleMaintenances", withExtension: "json") {
+            if FileManager.default.fileExists(atPath: url.path) {
                 print("File motorcycleMaintenances found: \(url)")
                 
                 do {
@@ -545,9 +551,6 @@ class CDImporter : NSObject, XMLParserDelegate {
                     for motorcycleMaintenance in motorcycleMaintenances {
                         print("Mc reg. \(motorcycleMaintenance.motorcycleRegistration)")
                         
-                        //                    if self.fetchMotorcycle(registration: motorcycle.registration) != nil {
-                        //                        print("\(motorcycle.registration) already exists")
-                        //                    } else {
                         if let mc = self.fetchMotorcycle(registration: motorcycleMaintenance.motorcycleRegistration) {
                             let motorcycleMaintenance1: MotorcycleMaintenance = (NSEntityDescription.insertNewObject(forEntityName: "MotorcycleMaintenance", into: importContext) as? MotorcycleMaintenance)!
                             motorcycleMaintenance1.motorcycle = mc
@@ -558,7 +561,6 @@ class CDImporter : NSObject, XMLParserDelegate {
                         } else {
                             print("Motorcycle \(motorcycleMaintenance.motorcycleRegistration) not found!")
                         }
-                        //                    }
                     }
                     
                     CDHelper.save(moc: importContext)

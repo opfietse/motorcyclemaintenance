@@ -259,9 +259,7 @@ class CDHelper : NSObject  {
     // MARK: - SAVING
     class func save(moc:NSManagedObjectContext) {
         moc.performAndWait {
-            
             if moc.hasChanges {
-                
                 do {
                     try moc.save()
                     //print("SAVED context \(moc.description)")
@@ -271,6 +269,7 @@ class CDHelper : NSObject  {
             } else {
                 //print("SKIPPED saving context \(moc.description) because there are no changes")
             }
+            
             if let parentContext = moc.parent {
                 save(moc: parentContext)
             }

@@ -23,7 +23,7 @@ class MotorcycleMaintenanceTaskTableViewController: CDTableViewController {
 
             if let subtitleLabel = cell.detailTextLabel {
                 if let _completionDate = motorcycleMaintenanceTask.completionDate {
-                    subtitleLabel.text = "Completed at " + String(describing: _completionDate)
+                    subtitleLabel.text = "Completed at " + String(describing: _completionDate) + " " + String(describing: motorcycleMaintenanceTask.remarks)
                 } else {
                     subtitleLabel.text = "Not completed"
                 }
@@ -35,6 +35,8 @@ class MotorcycleMaintenanceTaskTableViewController: CDTableViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
+        print("init MCMT ...")
+
         // CDTableViewController subclass customization
         self.entity = "MotorcycleMaintenanceTask"
         self.sort = [NSSortDescriptor(key: "completionDate", ascending: false)]
@@ -48,7 +50,7 @@ class MotorcycleMaintenanceTaskTableViewController: CDTableViewController {
         self.navigationItem.title = "MotorcycleMaintenanceTask"
 
         if let _currentMotorcycleMaintenance = currentMotorcycleMaintenance {
-            self.filter = NSPredicate(format: "%K == %@", "motorcycleMaintenance.motorcycle.registration", _currentMotorcycleMaintenance.motorcycle!.registration!)
+            self.filter = NSPredicate(format: "%K == %@", "motorcycleMaintenance", _currentMotorcycleMaintenance)
            
             var formattedCreationDate: String
             
@@ -85,26 +87,6 @@ class MotorcycleMaintenanceTaskTableViewController: CDTableViewController {
             parent.dismiss(animated: true, completion: nil)
         }
     }
-    
-    // MARK: - SEGUE
-    //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    //        if let locationAtHomeVC = segue.destinationViewController as? LocationAtHomeVC {
-    //
-    //            if segue.identifier == "Add Object Segue" {
-    //
-    //                let object = NSEntityDescription.insertNewObject(forEntityName: "LocationAtHome", into: CDHelper.shared.context)
-    //                locationAtHomeVC.segueObject = object
-    //
-    //            } else if segue.identifier == "Edit Object Segue" {
-    //
-    //                if let indexPath = self.tableView.indexPathForSelectedRow {
-    //                    if let object = self.frc.objectAtIndexPath(indexPath) as? NSManagedObject {
-    //                        locationAtHomeVC.segueObject = object
-    //                    }
-    //                }
-    //            } else {print("Unidentified Segue Attempted!")}
-    //        }
-    //    }
 }
 
 

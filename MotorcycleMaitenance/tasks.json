@@ -13,6 +13,14 @@
  },
  {
  "id": "PDM",
- "taskDescription": "Profieldiepte meten"
+ "taskDescription": "Profielsdiepte controleren"
+ },
+ {
+ "id": "DRV",
+ "taskDescription": "Distributieriemen vervangen"
+ },
+ {
+ "id": "COV",
+ "taskDescription": "Cardanolie vervangen"
  }
 ]
