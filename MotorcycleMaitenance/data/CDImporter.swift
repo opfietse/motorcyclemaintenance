@@ -105,12 +105,18 @@ class CDImporter : NSObject, XMLParserDelegate {
         return true // default to true to prevent a default data import when an error occurs
     }
     
-    func atLeastOneJsonFileExists() -> Bool {
-        if let storesDirectory = CDHelper.shared.storesDirectory {
+    class func atLeastOneJsonFileExists() -> Bool {
+        let storesDirectory: URL? = {
+            let fm = FileManager.default
+            let urls = fm.urls(for: .documentDirectory, in: .userDomainMask)
+            return urls[urls.count - 1]
+        }()
+
+        if let _storesDirectory = storesDirectory {
             for file in [ "tasks.json", "motorcycleTypes.json", "motorcycleTypeMaintenanceTasks.json", "motorcycleMaintenanceTasks.json", "motorcycles.json", "motorcycleMaintenances.json" ] {
-                let url = storesDirectory.appendingPathComponent(file)
+                let url = _storesDirectory.appendingPathComponent(file)
                 
-                if FileManager.default.fileExists(atPath: url.path) {
+                if FileManager.default.fileExists(atPath: (url.path)) {
                     return true
                 }
             }
@@ -120,7 +126,7 @@ class CDImporter : NSObject, XMLParserDelegate {
     }
     
     func checkIfDefaultDataNeedsImporting (url:URL, type:String) {
-        if atLeastOneJsonFileExists() {
+        if CDImporter.atLeastOneJsonFileExists() {
             let alert = UIAlertController(title: "Import Default Data?", message: "If you've never used this application before then some default data might help you understand how to use it. Tap 'Import' to import default data. Tap 'Cancel' to skip the import, especially if you've done this before on your other devices.", preferredStyle: .alert)
             
             let importButton = UIAlertAction(title: "Import", style: .destructive, handler: { (action) -> Void in
