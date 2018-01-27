@@ -20,23 +20,32 @@ class MotorcycleMaintenanceTaskTableViewController: CDTableViewController {
             if let textLabel = cell.textLabel {
                 textLabel.text = motorcycleMaintenanceTask.motorcycleTypeMaintenanceTask?.task?.taskDescription
             }
-
+            
             if let subtitleLabel = cell.detailTextLabel {
-                if let _completionDate = motorcycleMaintenanceTask.completionDate {
-                    subtitleLabel.text = "Completed at " + String(describing: _completionDate) + " " + String(describing: motorcycleMaintenanceTask.remarks)
+                if (motorcycleMaintenanceTask.completed) {
+                    cell.textLabel?.textColor = UIColor.green
+                    
+                    if let _completionDate = motorcycleMaintenanceTask.completionDate {
+                        subtitleLabel.text = "Completed at \(_completionDate) \(motorcycleMaintenanceTask.remarks ?? "")"
+                    } else {
+                        let now = Date()
+                        motorcycleMaintenanceTask.completionDate = now
+                        subtitleLabel.text = "Completed at \(now) \(motorcycleMaintenanceTask.remarks ?? "")"
+                    }
                 } else {
-                    subtitleLabel.text = "Not completed"
+                    cell.textLabel?.textColor = UIColor.black
+                    subtitleLabel.text = ""
                 }
             }
         }
     }
-
+    
     // MARK: - INITIALIZATION
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         print("init MCMT ...")
-
+        
         // CDTableViewController subclass customization
         self.entity = "MotorcycleMaintenanceTask"
         self.sort = [NSSortDescriptor(key: "completionDate", ascending: false)]
@@ -48,10 +57,10 @@ class MotorcycleMaintenanceTaskTableViewController: CDTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "MotorcycleMaintenanceTask"
-
+        
         if let _currentMotorcycleMaintenance = currentMotorcycleMaintenance {
             self.filter = NSPredicate(format: "%K == %@", "motorcycleMaintenance", _currentMotorcycleMaintenance)
-           
+            
             var formattedCreationDate: String
             
             if let creationDate = _currentMotorcycleMaintenance.creationDate {
@@ -66,7 +75,7 @@ class MotorcycleMaintenanceTaskTableViewController: CDTableViewController {
         } else {
             self.filter = nil
         }
-
+        
         self.performFetch()
     }
     
@@ -79,6 +88,14 @@ class MotorcycleMaintenanceTaskTableViewController: CDTableViewController {
     //
     //        CDHelper.saveSharedContext()
     //    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let motorcycleMaintenanceTask = self.frc.object(at: indexPath) as? MotorcycleMaintenanceTask {
+            motorcycleMaintenanceTask.completed = !motorcycleMaintenanceTask.completed;
+        }
+
+        self.performFetch()
+    }
     
     // MARK: - INTERACTION
     @IBAction func done (sender: AnyObject) {

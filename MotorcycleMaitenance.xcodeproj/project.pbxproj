@@ -68,6 +68,7 @@
 		6EC0A7DB1FC889DA00A3CBFE /* CDOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDOperation.swift; sourceTree = "<group>"; };
 		6EE842601FC89AC20025A8D6 /* DefaultData.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = DefaultData.sqlite; sourceTree = SOURCE_ROOT; };
 		6EE842621FC89F640025A8D6 /* tasks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tasks.json; sourceTree = "<group>"; };
+		9B2360B7201CF7EF004A58A7 /* Model 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 7.xcdatamodel"; sourceTree = "<group>"; };
 		9B40788F1F93BDC6006C3B70 /* MotorcycleMaitenance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotorcycleMaitenance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B4078921F93BDC6006C3B70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B4078941F93BDC6006C3B70 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -676,6 +677,7 @@
 		9BC8D7C41F93F0D800DA1989 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				9B2360B7201CF7EF004A58A7 /* Model 7.xcdatamodel */,
 				6E8BDCB72019B3B400882FD5 /* Model 6.xcdatamodel */,
 				6E29B53E1FE424CB00B7245F /* Model 5.xcdatamodel */,
 				6EAA90FF1FC9B66500454798 /* Model 4.xcdatamodel */,
@@ -683,7 +685,7 @@
 				6E52C24A1FB983CD0097D6F9 /* Model 2.xcdatamodel */,
 				9BC8D7C51F93F0D800DA1989 /* Model.xcdatamodel */,
 			);
-			currentVersion = 6E8BDCB72019B3B400882FD5 /* Model 6.xcdatamodel */;
+			currentVersion = 9B2360B7201CF7EF004A58A7 /* Model 7.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
