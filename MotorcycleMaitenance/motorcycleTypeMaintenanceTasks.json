@@ -7,19 +7,387 @@
  },
  "tasks": [
            {
-           "mileageInterval": 6000,
+           "mileageInterval": 12000,
            "timeInterval": 1,
            "taskId": "MOV"
            },
            {
-           "mileageInterval": 6000,
+           "mileageInterval": 12000,
            "timeInterval": 1,
-           "taskId": "OFV"
+           "taskId": "MOFV"
            },
            {
            "mileageInterval": 0,
-           "timeInterval": 1,
+           "timeInterval": 2,
            "taskId": "DRV"
+           },
+           {
+           "mileageInterval": 36000,
+           "timeInterval": 3,
+           "taskId": "MOOFS"
+           },
+           {
+           "mileageInterval": 24000,
+           "timeInterval": 2,
+           "taskId": "MODC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 0,
+           "taskId": "KSCA"
+           },
+           {
+           "mileageInterval": 24000,
+           "timeInterval": 2,
+           "taskId": "DRSC",
+           "remarks": "Om en om met distributierimen vervangen"
+           },
+           {
+           "mileageInterval": 24000,
+           "timeInterval": 2,
+           "taskId": "DRV"
+           },
+           {
+           "mileageInterval": 24000,
+           "timeInterval": 2,
+           "taskId": "BRCV"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 2,
+           "taskId": "LFCR",
+           "remarks": "Om en om met luchtfilter vervangen (elke 24000 km of 2 jaar)"
+           },
+           {
+           "mileageInterval": 24000,
+           "timeInterval": 2,
+           "taskId": "LFV"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 0,
+           "taskId": "GKSSTC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "RKVNC"
+           },
+           {
+           "mileageInterval": 36000,
+           "timeInterval": 3,
+           "taskId": "RKVV"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "RKLCA"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "GKCS"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "BSC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "PDM"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "RBCV"
+           },
+           {
+           "mileageInterval": 24000,
+           "timeInterval": 2,
+           "taskId": "BHLC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "KSUSC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 0,
+           "taskId": "KPPC"
+           },
+           {
+           "mileageInterval": 24000,
+           "timeInterval": 2,
+           "taskId": "AWADC"
+           },
+           {
+           "mileageInterval": 24000,
+           "timeInterval": 2,
+           "taskId": "WLC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "VRC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "MBOBC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "ZSC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "VWAMC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "AWAMC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "UBLC"
+           },
+           {
+           "mileageInterval": 36000,
+           "timeInterval": 3,
+           "taskId": "VVOV"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "VPSCL"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "BVKWC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "ASIV"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "ACL"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "TRM"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "ASM"
+           }
+           ]
+ },
+ {
+ "motorcycleType": {
+ "make": "Ducati",
+ "model": "Hypermotard 796",
+ "year": 2010
+ },
+ "tasks": [
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "MOV"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "MOFV"
+           },
+           {
+           "mileageInterval": 0,
+           "timeInterval": 2,
+           "taskId": "DRV"
+           },
+           {
+           "mileageInterval": 36000,
+           "timeInterval": 3,
+           "taskId": "MOOFS"
+           },
+           {
+           "mileageInterval": 24000,
+           "timeInterval": 2,
+           "taskId": "MODC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 0,
+           "taskId": "KSCA"
+           },
+           {
+           "mileageInterval": 24000,
+           "timeInterval": 2,
+           "taskId": "DRSC",
+           "remarks": "Om en om met distributierimen vervangen"
+           },
+           {
+           "mileageInterval": 24000,
+           "timeInterval": 2,
+           "taskId": "DRV"
+           },
+           {
+           "mileageInterval": 24000,
+           "timeInterval": 2,
+           "taskId": "BRCV"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 2,
+           "taskId": "LFCR",
+           "remarks": "Om en om met luchtfilter vervangen (elke 24000 km of 2 jaar)"
+           },
+           {
+           "mileageInterval": 24000,
+           "timeInterval": 2,
+           "taskId": "LFV"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 0,
+           "taskId": "GKSSTC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "RKVNC"
+           },
+           {
+           "mileageInterval": 36000,
+           "timeInterval": 3,
+           "taskId": "RKVV"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "RKLCA"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "GKCS"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "BSC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "PDM"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "RBCV"
+           },
+           {
+           "mileageInterval": 24000,
+           "timeInterval": 2,
+           "taskId": "BHLC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "KSUSC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 0,
+           "taskId": "KPPC"
+           },
+           {
+           "mileageInterval": 24000,
+           "timeInterval": 2,
+           "taskId": "AWADC"
+           },
+           {
+           "mileageInterval": 24000,
+           "timeInterval": 2,
+           "taskId": "WLC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "VRC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "MBOBC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "ZSC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "VWAMC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "AWAMC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "UBLC"
+           },
+           {
+           "mileageInterval": 36000,
+           "timeInterval": 3,
+           "taskId": "VVOV"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "VPSCL"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "BVKWC"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "ASIV"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "ACL"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "TRM"
+           },
+           {
+           "mileageInterval": 12000,
+           "timeInterval": 1,
+           "taskId": "ASM"
            }
            ]
  },
@@ -31,7 +399,7 @@
  },
  "tasks": [
            {
-           "mileageInterval": 6000,
+           "mileageInterval": 10000,
            "timeInterval": 1,
            "taskId": "BSC"
            },
@@ -39,6 +407,157 @@
            "mileageInterval": 21000,
            "timeInterval": 1,
            "taskId": "COV"
+           },
+           {
+           "mileageInterval": 0,
+           "timeInterval": 4,
+           "taskId": "RLV"
+           },
+           {
+           "mileageInterval": 0,
+           "timeInterval": 4,
+           "taskId": "BLV"
+           },
+           {
+           "mileageInterval": 10000,
+           "timeInterval": 1,
+           "taskId": "BUBV"
+           },
+           {
+           "mileageInterval": 10000,
+           "timeInterval": 1,
+           "taskId": "VBOV"
+           },
+           {
+           "mileageInterval": 10000,
+           "timeInterval": 1,
+           "taskId": "SLBVC"
+           },
+           {
+           "mileageInterval": 10000,
+           "timeInterval": 1,
+           "taskId": "TKHC"
+           },
+           {
+           "mileageInterval": 10000,
+           "timeInterval": 1,
+           "taskId": "BHLC"
+           },
+           {
+           "mileageInterval": 10000,
+           "timeInterval": 1,
+           "taskId": "WLC"
+           },
+           {
+           "mileageInterval": 10000,
+           "timeInterval": 1,
+           "taskId": "RSC"
+           },
+           {
+           "mileageInterval": 10000,
+           "timeInterval": 1,
+           "taskId": "LFCR"
+           },
+           {
+           "mileageInterval": 10000,
+           "timeInterval": 1,
+           "taskId": "MOFV"
+           },
+           {
+           "mileageInterval": 10000,
+           "timeInterval": 1,
+           "taskId": "ASIV"
+           },
+           {
+           "mileageInterval": 10000,
+           "timeInterval": 1,
+           "taskId": "RKVNC"
+           },
+           {
+           "mileageInterval": 10000,
+           "timeInterval": 1,
+           "taskId": "KSCA"
+           },
+           {
+           "mileageInterval": 10000,
+           "timeInterval": 1,
+           "taskId": "BMC"
+           },
+           {
+           "mileageInterval": 10000,
+           "timeInterval": 1,
+           "taskId": "GKSSTC"
+           },
+           {
+           "mileageInterval": 10000,
+           "timeInterval": 1,
+           "taskId": "OOS"
+           },
+           {
+           "mileageInterval": 10000,
+           "timeInterval": 1,
+           "taskId": "COV"
+           },
+           {
+           "mileageInterval": 10000,
+           "timeInterval": 1,
+           "taskId": "RKLCA"
+           },
+           {
+           "mileageInterval": 20000,
+           "timeInterval": 2,
+           "taskId": "VVOV"
+           },
+           {
+           "mileageInterval": 20000,
+           "timeInterval": 2,
+           "taskId": "VVKV"
+           },
+           {
+           "mileageInterval": 20000,
+           "timeInterval": 2,
+           "taskId": "BIBV"
+           },
+           {
+           "mileageInterval": 20000,
+           "timeInterval": 2,
+           "taskId": "DRCA",
+           "remarks": "Elke 50.000 km vervangen"
+           },
+           {
+           "mileageInterval": 20000,
+           "timeInterval": 2,
+           "taskId": "LFV"
+           },
+           {
+           "mileageInterval": 20000,
+           "timeInterval": 2,
+           "taskId": "VVCS"
+           },
+           {
+           "mileageInterval": 20000,
+           "timeInterval": 2,
+           "taskId": "RKVV"
+           },
+           {
+           "mileageInterval": 20000,
+           "timeInterval": 2,
+           "taskId": "COV"
+           },
+           {
+           "mileageInterval": 20000,
+           "timeInterval": 2,
+           "taskId": "VBOV"
+           },
+           {
+           "mileageInterval": 20000,
+           "timeInterval": 2,
+           "taskId": "RBCV"
+           },
+           {
+           "mileageInterval": 20000,
+           "timeInterval": 2,
+           "taskId": "OPHC"
            }
            ]
  }

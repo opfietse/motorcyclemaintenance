@@ -262,12 +262,12 @@ class CDHelper : NSObject  {
             if moc.hasChanges {
                 do {
                     try moc.save()
-                    //print("SAVED context \(moc.description)")
+                    print("SAVED context \(moc.description)")
                 } catch {
                     print("ERROR saving context \(moc.description) - \(error)")
                 }
             } else {
-                //print("SKIPPED saving context \(moc.description) because there are no changes")
+                print("SKIPPED saving context \(moc.description) because there are no changes")
             }
             
             if let parentContext = moc.parent {
