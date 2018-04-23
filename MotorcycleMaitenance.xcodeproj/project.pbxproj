@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		6E1A526E1FB893B100F9CAFC /* MotorcycleMaintenanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A526D1FB893B100F9CAFC /* MotorcycleMaintenanceTableViewController.swift */; };
 		6E22E4411FB4B1B100BB3C3E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E22E4401FB4B1B100BB3C3E /* libsqlite3.tbd */; };
+		6E57E5B3206A991A0004A337 /* CompleteTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57E5B2206A991A0004A337 /* CompleteTaskViewController.swift */; };
 		6E698C87200529DD00C48722 /* AddMotorcycleMaintanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E698C86200529DD00C48722 /* AddMotorcycleMaintanceViewController.swift */; };
 		6EC00B541FC35C6D000A555D /* MotorcycleMaintenanceTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC00B531FC35C6D000A555D /* MotorcycleMaintenanceTaskTableViewController.swift */; };
 		6EC0A7DA1FC8720900A3CBFE /* CDImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0A7D91FC8720900A3CBFE /* CDImporter.swift */; };
 		6EC0A7DC1FC889DA00A3CBFE /* CDOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0A7DB1FC889DA00A3CBFE /* CDOperation.swift */; };
+		6EE0DEC8207A8C990090B844 /* CompleteTaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE0DEC7207A8C990090B844 /* CompleteTaskDelegate.swift */; };
 		6EE842611FC89AC20025A8D6 /* DefaultData.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 6EE842601FC89AC20025A8D6 /* DefaultData.sqlite */; };
 		6EE842631FC89F640025A8D6 /* tasks.json in Resources */ = {isa = PBXBuildFile; fileRef = 6EE842621FC89F640025A8D6 /* tasks.json */; };
 		9B4078931F93BDC6006C3B70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4078921F93BDC6006C3B70 /* AppDelegate.swift */; };
@@ -60,12 +62,14 @@
 		6E22E4401FB4B1B100BB3C3E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		6E29B53E1FE424CB00B7245F /* Model 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 5.xcdatamodel"; sourceTree = "<group>"; };
 		6E52C24A1FB983CD0097D6F9 /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
+		6E57E5B2206A991A0004A337 /* CompleteTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteTaskViewController.swift; sourceTree = "<group>"; };
 		6E698C86200529DD00C48722 /* AddMotorcycleMaintanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMotorcycleMaintanceViewController.swift; sourceTree = "<group>"; };
 		6E8BDCB72019B3B400882FD5 /* Model 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 6.xcdatamodel"; sourceTree = "<group>"; };
 		6EAA90FF1FC9B66500454798 /* Model 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 4.xcdatamodel"; sourceTree = "<group>"; };
 		6EC00B531FC35C6D000A555D /* MotorcycleMaintenanceTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorcycleMaintenanceTaskTableViewController.swift; sourceTree = "<group>"; };
 		6EC0A7D91FC8720900A3CBFE /* CDImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDImporter.swift; sourceTree = "<group>"; };
 		6EC0A7DB1FC889DA00A3CBFE /* CDOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDOperation.swift; sourceTree = "<group>"; };
+		6EE0DEC7207A8C990090B844 /* CompleteTaskDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteTaskDelegate.swift; sourceTree = "<group>"; };
 		6EE842601FC89AC20025A8D6 /* DefaultData.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = DefaultData.sqlite; sourceTree = SOURCE_ROOT; };
 		6EE842621FC89F640025A8D6 /* tasks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tasks.json; sourceTree = "<group>"; };
 		9B2360B7201CF7EF004A58A7 /* Model 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 7.xcdatamodel"; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 				9B6EA2571FCAE8F2009AB1FA /* motorcycleMaintenances.json */,
 				9B6EA2591FCB3AB5009AB1FA /* motorcycleMaintenanceTasks.json */,
 				9B6EA25B1FCB3BFC009AB1FA /* motorcycleTypeMaintenanceTasks.json */,
+				6EE0DEC7207A8C990090B844 /* CompleteTaskDelegate.swift */,
 			);
 			path = MotorcycleMaitenance;
 			sourceTree = "<group>";
@@ -205,6 +210,7 @@
 				9BCA8E531FAE0B51000D8311 /* MotorcycleTableViewController.swift */,
 				6EC00B531FC35C6D000A555D /* MotorcycleMaintenanceTaskTableViewController.swift */,
 				6E698C86200529DD00C48722 /* AddMotorcycleMaintanceViewController.swift */,
+				6E57E5B2206A991A0004A337 /* CompleteTaskViewController.swift */,
 			);
 			path = viewcontrollers;
 			sourceTree = "<group>";
@@ -373,8 +379,10 @@
 				6EC0A7DA1FC8720900A3CBFE /* CDImporter.swift in Sources */,
 				9BCA8E5B1FAE1A5F000D8311 /* CDMigration.swift in Sources */,
 				9BCA8E591FAE0C61000D8311 /* CDHelper.swift in Sources */,
+				6EE0DEC8207A8C990090B844 /* CompleteTaskDelegate.swift in Sources */,
 				9BC8D7C61F93F0D800DA1989 /* Model.xcdatamodeld in Sources */,
 				6EC0A7DC1FC889DA00A3CBFE /* CDOperation.swift in Sources */,
+				6E57E5B3206A991A0004A337 /* CompleteTaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

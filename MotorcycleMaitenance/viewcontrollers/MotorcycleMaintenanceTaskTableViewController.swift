@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class MotorcycleMaintenanceTaskTableViewController: CDTableViewController {
+class MotorcycleMaintenanceTaskTableViewController: CDTableViewController, CompleteTaskDelegate {
     var currentMotorcycleMaintenance: MotorcycleMaintenance?
     
     // MARK: - CELL CONFIGURATION
@@ -93,7 +93,7 @@ class MotorcycleMaintenanceTaskTableViewController: CDTableViewController {
         if let motorcycleMaintenanceTask = self.frc.object(at: indexPath) as? MotorcycleMaintenanceTask {
             motorcycleMaintenanceTask.completed = !motorcycleMaintenanceTask.completed;
         }
-
+        
         self.performFetch()
     }
     
@@ -104,6 +104,49 @@ class MotorcycleMaintenanceTaskTableViewController: CDTableViewController {
             parent.dismiss(animated: true, completion: nil)
         }
     }
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        let segueDestination = segue.destination
+
+        var mct: MotorcycleMaintenanceTask? = nil
+
+        if let cell = sender as? UITableViewCell {
+            let indexPath: IndexPath = self.tableView.indexPath(for: cell)!
+            mct = self.frc.object(at: indexPath) as? MotorcycleMaintenanceTask
+        } else {
+            let i = IndexPath(row: 0, section: 0)
+            //            i.row = 0
+            //            i.section = 0
+            mct = self.frc.object(at: i) as? MotorcycleMaintenanceTask
+        }
+        
+        print("MCT: " + String(describing: mct))
+        
+        // TODO Check segue name
+        if let segueIdentifier = segue.identifier {
+            if segueIdentifier == "CompleteTaskSegue" {
+                let mcmtvc: CompleteTaskViewController = segueDestination as! CompleteTaskViewController
+                mcmtvc.currentMotorcycleMaintenanceTask = mct!
+                mcmtvc.delegate = self
+                mcmtvc.moc = self.context
+            }
+            
+            // mcToAddMcmTasksSegue
+        }
+    }
+    
+    func completeTask(motorcycleMaintenanceTask: MotorcycleMaintenanceTask) {
+        CDHelper.save(moc: self.context)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func cancelTaskCompletion() {
+        
+    }
+    
 }
-
-
