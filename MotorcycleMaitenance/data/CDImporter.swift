@@ -42,9 +42,10 @@ struct JsonMotorcycleMaintenance : Codable {
 }
 
 struct JsonMotorcycleTypeTask : Codable {
-    let mileageInterval: Int16
-    let timeInterval: Int16
+    let mileageInterval: Int32
+    let timeInterval: Int32
     let taskId: String
+    let remarks: String?
 }
 
 struct JsonMotorcycleTypeMaintenanceTask : Codable {
@@ -56,7 +57,7 @@ struct JsonMotorcycleMaintenanceWithTasks : Codable {
     struct JsonMotorcycleMaintenanceTask : Codable {
         let taskId: String
         let completionDate: Date
-        let mileage: Int16
+        let mileage: Int32
         let remarks: String
     }
     
@@ -286,6 +287,7 @@ class CDImporter : NSObject, XMLParserDelegate {
                                     motorcycleTypeMaintenanceTask1.task = task
                                     motorcycleTypeMaintenanceTask1.mileageInterval = mctTask.mileageInterval
                                     motorcycleTypeMaintenanceTask1.timeInterval = mctTask.timeInterval
+                                    motorcycleTypeMaintenanceTask1.remarks = mctTask.remarks
                                 }
                             }
                         }

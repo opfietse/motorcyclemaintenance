@@ -88,11 +88,13 @@
 		9B4078B41F93BDC6006C3B70 /* MotorcycleMaitenanceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotorcycleMaitenanceUITests.swift; sourceTree = "<group>"; };
 		9B4078B61F93BDC6006C3B70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B4078C31F93BDF4006C3B70 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		9B4F129B2024CC83006EF3F2 /* Model 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 8.xcdatamodel"; sourceTree = "<group>"; };
 		9B6EA2531FC9F0DE009AB1FA /* motorcycleTypes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = motorcycleTypes.json; sourceTree = "<group>"; };
 		9B6EA2551FCADCF4009AB1FA /* motorcycles.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = motorcycles.json; sourceTree = "<group>"; };
 		9B6EA2571FCAE8F2009AB1FA /* motorcycleMaintenances.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = motorcycleMaintenances.json; sourceTree = "<group>"; };
 		9B6EA2591FCB3AB5009AB1FA /* motorcycleMaintenanceTasks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = motorcycleMaintenanceTasks.json; sourceTree = "<group>"; };
 		9B6EA25B1FCB3BFC009AB1FA /* motorcycleTypeMaintenanceTasks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = motorcycleTypeMaintenanceTasks.json; sourceTree = "<group>"; };
+		9B9C5631208343930046CDD1 /* Model 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 9.xcdatamodel"; sourceTree = "<group>"; };
 		9BC8D7C51F93F0D800DA1989 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		9BCA8E531FAE0B51000D8311 /* MotorcycleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotorcycleTableViewController.swift; sourceTree = "<group>"; };
 		9BCA8E551FAE0BAC000D8311 /* CDTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDTableViewController.swift; sourceTree = "<group>"; };
@@ -685,6 +687,8 @@
 		9BC8D7C41F93F0D800DA1989 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				9B9C5631208343930046CDD1 /* Model 9.xcdatamodel */,
+				9B4F129B2024CC83006EF3F2 /* Model 8.xcdatamodel */,
 				9B2360B7201CF7EF004A58A7 /* Model 7.xcdatamodel */,
 				6E8BDCB72019B3B400882FD5 /* Model 6.xcdatamodel */,
 				6E29B53E1FE424CB00B7245F /* Model 5.xcdatamodel */,
@@ -693,7 +697,7 @@
 				6E52C24A1FB983CD0097D6F9 /* Model 2.xcdatamodel */,
 				9BC8D7C51F93F0D800DA1989 /* Model.xcdatamodel */,
 			);
-			currentVersion = 9B2360B7201CF7EF004A58A7 /* Model 7.xcdatamodel */;
+			currentVersion = 9B9C5631208343930046CDD1 /* Model 9.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

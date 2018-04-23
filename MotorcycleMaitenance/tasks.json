@@ -4,8 +4,8 @@
  "taskDescription": "Motorolie vervangen"
  },
  {
- "id": "OFV",
- "taskDescription": "Oliefilter vervangen"
+ "id": "MOFV",
+ "taskDescription": "Motoroliefilter vervangen"
  },
  {
  "id": "BSC",
@@ -13,7 +13,7 @@
  },
  {
  "id": "PDM",
- "taskDescription": "Profielsdiepte controleren"
+ "taskDescription": "Profieldiepte controleren"
  },
  {
  "id": "DRV",
@@ -22,5 +22,193 @@
  {
  "id": "COV",
  "taskDescription": "Cardanolie vervangen"
+ },
+ {
+ "id": "MOOFS",
+ "taskDescription": "Motorolie-oppikfilter schoonmaken"
+ },
+ {
+ "id": "MODC",
+ "taskDescription": "Motoroliedruk controleren"
+ },
+ {
+ "id": "KSCA",
+ "taskDescription": "Klepspeling controleren/afstellen"
+ },
+ {
+ "id": "DRSC",
+ "taskDescription": "Spanning distributieriemen controleren"
+ },
+ {
+ "id": "BRCV",
+ "taskDescription": "Bougies reinigen, controleren en eventueel vervangen"
+ },
+ {
+ "id": "LFCR",
+ "taskDescription": "Luchtfilter controleren en reinigen"
+ },
+ {
+ "id": "LFV",
+ "taskDescription": "Luchtfilter vervangen"
+ },
+ {
+ "id": "GKSSTC",
+ "taskDescription": "Gasklepsynchronisatie en stationair toerental controleren"
+ },
+ {
+ "id": "RKVNC",
+ "taskDescription": "Rem- en koppleingsvloeistofniveau's controleren"
+ },
+ {
+ "id": "RKVV",
+ "taskDescription": "Rem- en koppelingsvloeistof vervangen"
+ },
+ {
+ "id": "RKLCA",
+ "taskDescription": "Rem- en koppelingsleidingen controleren en afstellen"
+ },
+ {
+ "id": "GKCS",
+ "taskDescription": "Gas- en chokekabels controleren en smeren"
+ },
+ {
+ "id": "RBCV",
+ "taskDescription": "Remblokken controleren en eventueel vervangen"
+ },
+ {
+ "id": "BHLC",
+ "taskDescription": "Balhoofdlagers controleren"
+ },
+ {
+ "id": "KSUSC",
+ "taskDescription": "Kettingspanning, -uitlijning en -smering controleren"
+ },
+ {
+ "id": "KPPC",
+ "taskDescription": "Koppelingsplatenpakket controleren"
+ },
+ {
+ "id": "AWADC",
+ "taskDescription": "Achterwielaandrijfdempers controleren"
+ },
+ {
+ "id": "WLC",
+ "taskDescription": "Wiellagers controleren"
+ },
+ {
+ "id": "VRC",
+ "taskDescription": "Verlichting en richtingaanwijzers controleren"
+ },
+ {
+ "id": "MBOBC",
+ "taskDescription": "Motorblokophangbouten controleren"
+ },
+ {
+ "id": "ZSC",
+ "taskDescription": "Zijstandaard controleren"
+ },
+ {
+ "id": "VWAMC",
+ "taskDescription": "Voorwielasmoer controleren"
+ },
+ {
+ "id": "AWAMC",
+ "taskDescription": "Achterwielasmoer controleren"
+ },
+ {
+ "id": "UBLC",
+ "taskDescription": "Uitwendige brandstofleidingen controleren"
+ },
+ {
+ "id": "VVOV",
+ "taskDescription": "Voorvorkolie vervangen"
+ },
+ {
+ "id": "VPSCL",
+ "taskDescription": "Vorkpoten en schokdemper controleren op lekkage"
+ },
+ {
+ "id": "BVKWC",
+ "taskDescription": "Bouten voorkettingwiel controleren"
+ },
+ {
+ "id": "ASIV",
+ "taskDescription": "Algemene smering en invetten"
+ },
+ {
+ "id": "ACL",
+ "taskDescription": "Accu controleren en laden"
+ },
+ {
+ "id": "TRM",
+ "taskDescription": "Testrit maken"
+ },
+ {
+ "id": "ASM",
+ "taskDescription": "Algemene schoonmaak"
+ },
+ {
+ "id": "RLV",
+ "taskDescription": "Remleidingen vervangen"
+ },
+ {
+ "id": "BLV",
+ "taskDescription": "Benzineleidingen vervangen"
+ },
+ {
+ "id": "BUBV",
+ "taskDescription": "Buitenste bougies vervangen"
+ },
+ {
+ "id": "VBOV",
+ "taskDescription": "Versnellingsbakolie vervangen"
+ },
+ {
+ "id": "SLBVC",
+ "taskDescription": "Stationair lucht/brandstof-verhouding (CO) controleren"
+ },
+ {
+ "id": "TKHC",
+ "taskDescription": "Transmissiekabels en -hendels controleren"
+ },
+ {
+ "id": "RSC",
+ "taskDescription": "Remschijven controleren"
+ },
+ {
+ "id": "BMC",
+ "taskDescription": "Bouten en moeren controleren"
+ },
+ {
+ "id": "OOS",
+ "taskDescription": "Olieoverloop schoonmaken"
+ },
+ {
+ "id": "VVKV",
+ "taskDescription": "Voorvorkkeerringen vervangen"
+ },
+ {
+ "id": "BIBV",
+ "taskDescription": "Binnenste bougies vervangen"
+ },
+ {
+ "id": "DRCA",
+ "taskDescription": "Dynamoriem controleren/afstellen"
+ },
+ {
+ "id": "VVCS",
+ "taskDescription": "Voorvork controleren en smeren"
+ },
+ {
+ "id": "OPHC",
+ "taskDescription": "Ophanging controleren"
+ },
+ {
+ "id": "NEW",
+ "taskDescription": "New"
+ },
+ {
+ "id": "NEW",
+ "taskDescription": "New"
  }
 ]
