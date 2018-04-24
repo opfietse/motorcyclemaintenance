@@ -214,7 +214,7 @@
         <scene sceneID="3CE-h8-xyD">
             <objects>
                 <viewController id="gQu-gm-x4Q" customClass="CompleteTaskViewController" customModule="MotorcycleMaitenance" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="uP7-Ef-pky" customClass="I">
+                    <view key="view" contentMode="scaleToFill" id="uP7-Ef-pky">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -230,7 +230,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Complete task"/>
                                 <connections>
-                                    <action selector="completeTask:" destination="gQu-gm-x4Q" eventType="touchUpInside" id="Qme-A6-LFP"/>
+                                    <action selector="completeTask:" destination="gQu-gm-x4Q" eventType="touchUpInside" id="P0f-ph-Ty5"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="220-NX-yQF">
@@ -280,7 +280,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cancel"/>
                                 <connections>
-                                    <action selector="cancel:" destination="gQu-gm-x4Q" eventType="touchUpInside" id="7lk-cO-xKz"/>
+                                    <action selector="cancelCompletingTask:" destination="gQu-gm-x4Q" eventType="touchUpInside" id="49a-i2-peB"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -288,17 +288,14 @@
                         <viewLayoutGuide key="safeArea" id="mFb-dJ-NQX"/>
                     </view>
                     <connections>
-                        <outlet property="cancel" destination="eUx-cS-tP1" id="RU0-9l-amZ"/>
-                        <outlet property="completionDate" destination="xdv-wC-dPc" id="kGd-qa-kPK"/>
                         <outlet property="completionDateTextField" destination="xdv-wC-dPc" id="XxQ-Bi-qMm"/>
                         <outlet property="mileageTextField" destination="ZN6-G8-gre" id="BME-I0-GgW"/>
-                        <outlet property="remarks" destination="4r9-Gz-WSz" id="GRD-mF-cYE"/>
                         <outlet property="remarksTextField" destination="4r9-Gz-WSz" id="wtm-GP-weI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jES-ro-NGL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4467.7734375" y="-323.4375"/>
+            <point key="canvasLocation" x="5037" y="-323"/>
         </scene>
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">

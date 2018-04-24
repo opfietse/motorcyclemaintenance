@@ -30,6 +30,15 @@ class CompleteTaskViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         completionDate = Date()
         completionDateTextField.text = completionDate?.description
+        if let currentRemarks = currentMotorcycleMaintenanceTask?.remarks {
+            remarksTextField.text = currentRemarks
+        }
+        
+        completionDateTextField.delegate = self
+        remarksTextField.delegate = self
+        mileageTextField.delegate = self
+        23
+        self.hideKeyboardWhenBackgroundIsTapped()
     }
     
     override func didReceiveMemoryWarning() {
@@ -38,50 +47,48 @@ class CompleteTaskViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func completeTask(_ sender: Any) {
+        currentMotorcycleMaintenanceTask?.completed = true
+//        currentMotorcycleMaintenanceTask?.remarks = "hardcoded"
         CDHelper.save(moc: moc!)
         delegate!.completeTask(motorcycleMaintenanceTask: currentMotorcycleMaintenanceTask!)
+        self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func cancel(_ sender: Any) {
+    @IBAction func cancelCompletingTask(_ sender: Any) {
         self.hideKeyboard()
-        self.navigationController?.popViewController(animated: true);
+        // self.navigationController?.popViewController(animated: true);
         delegate!.cancelTaskCompletion()
+        self.dismiss(animated: true, completion: nil)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField {
         case remarksTextField: currentMotorcycleMaintenanceTask?.remarks = remarksTextField.text
         case completionDateTextField: currentMotorcycleMaintenanceTask?.completionDate = completionDate
-        case mileageTextField: currentMotorcycleMaintenanceTask?.mileage = Int16(mileageTextField.text!)!
+        case mileageTextField: currentMotorcycleMaintenanceTask?.mileage = Int32(mileageTextField.text!)!
         default: print("Unknown field \(textField)")
         }
     }
     
-//    - (IBAction)cancel:(id)sender {
-//    if (debug==1) {
-//    NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-//    }
-//
-//    }
-    
-func hideKeyboardWhenBackgroundIsTapped() {
-//    if (debug==1) {
-//    NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-//    }
-    
-    let tgr: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector(("hideKeyboard")))
-    tgr.cancelsTouchesInView = false
-    self.view.addGestureRecognizer(tgr)
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
+        switch textField {
+        case remarksTextField: currentMotorcycleMaintenanceTask?.remarks = remarksTextField.text
+        case completionDateTextField: currentMotorcycleMaintenanceTask?.completionDate = completionDate
+        case mileageTextField: currentMotorcycleMaintenanceTask?.mileage = Int32(mileageTextField.text!)!
+        default: print("Unknown field \(textField)")
+        }
     }
     
-    func hideKeyboard() {
-//    if (debug==1) {
-//    NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-//    }
-    
-    self.view.endEditing(true)
+    func hideKeyboardWhenBackgroundIsTapped() {
+        let tgr: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(hideKeyboard))
+        tgr.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tgr)
     }
-
+    
+    @objc func hideKeyboard() {
+        self.view.endEditing(true)
+    }
+    
     /*
      // MARK: - Navigation
      

@@ -90,11 +90,11 @@ class MotorcycleMaintenanceTaskTableViewController: CDTableViewController, Compl
     //    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let motorcycleMaintenanceTask = self.frc.object(at: indexPath) as? MotorcycleMaintenanceTask {
-            motorcycleMaintenanceTask.completed = !motorcycleMaintenanceTask.completed;
-        }
-        
-        self.performFetch()
+//        if let motorcycleMaintenanceTask = self.frc.object(at: indexPath) as? MotorcycleMaintenanceTask {
+//            motorcycleMaintenanceTask.completed = !motorcycleMaintenanceTask.completed;
+//        }
+//        
+//        self.performFetch()
     }
     
     // MARK: - INTERACTION
@@ -112,9 +112,9 @@ class MotorcycleMaintenanceTaskTableViewController: CDTableViewController, Compl
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         let segueDestination = segue.destination
-
+        
         var mct: MotorcycleMaintenanceTask? = nil
-
+        
         if let cell = sender as? UITableViewCell {
             let indexPath: IndexPath = self.tableView.indexPath(for: cell)!
             mct = self.frc.object(at: indexPath) as? MotorcycleMaintenanceTask
@@ -141,8 +141,12 @@ class MotorcycleMaintenanceTaskTableViewController: CDTableViewController, Compl
     }
     
     func completeTask(motorcycleMaintenanceTask: MotorcycleMaintenanceTask) {
-        CDHelper.save(moc: self.context)
-        self.navigationController?.popViewController(animated: true)
+//        CDHelper.save(moc: self.context)
+//        if let nav = self.navigationController {
+//            nav.popViewController(animated: true)
+//        }
+        self.performFetch()
+//        self.tableView.reloadData()
     }
     
     func cancelTaskCompletion() {
