@@ -16,5 +16,17 @@
  "motorcycleTypeMake": "Moto Guzzi",
  "motorcycleTypeModel": "Bellagio",
  "motorcycleTypeYear": 2009
+ },
+ {
+ "registration": "20-MF-JS",
+ "motorcycleTypeMake": "Brammo",
+ "motorcycleTypeModel": "Empulse R",
+ "motorcycleTypeYear": 2014
+ },
+ {
+ "registration": "HB-43-MS",
+ "motorcycleTypeMake": "MuZ",
+ "motorcycleTypeModel": "Skorpion Replica",
+ "motorcycleTypeYear": 1997
  }
 ]

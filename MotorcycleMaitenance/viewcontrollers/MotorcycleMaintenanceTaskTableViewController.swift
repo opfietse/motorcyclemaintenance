@@ -18,7 +18,12 @@ class MotorcycleMaintenanceTaskTableViewController: CDTableViewController {
         
         if let motorcycleMaintenanceTask = self.frc.object(at: indexPath) as? MotorcycleMaintenanceTask {
             if let textLabel = cell.textLabel {
-                textLabel.text = motorcycleMaintenanceTask.motorcycleTypeMaintenanceTask?.task?.taskDescription
+                let motorcycleTypeMaintenanceTask = motorcycleMaintenanceTask.motorcycleTypeMaintenanceTask
+                let task = motorcycleTypeMaintenanceTask?.task
+                
+                if let taskDescription = task?.taskDescription {
+                textLabel.text = "\(taskDescription) (\(self.intervalDescription(task: motorcycleTypeMaintenanceTask!))"
+                }
             }
             
             if let subtitleLabel = cell.detailTextLabel {
@@ -38,6 +43,22 @@ class MotorcycleMaintenanceTaskTableViewController: CDTableViewController {
                 }
             }
         }
+    }
+    
+    func intervalDescription(task: MotorcycleTypeMaintenanceTask) -> String {
+        var intervalDescription: String
+        
+        if  task.mileageInterval > 0 {
+            if task.timeInterval > 0 {
+                intervalDescription = "\(task.mileageInterval)/\(task.timeInterval) jaar"
+            } else {
+                intervalDescription = "\(task.mileageInterval)"
+            }
+        } else {
+            intervalDescription = "\(task.timeInterval) jaar"
+        }
+        
+        return intervalDescription
     }
     
     // MARK: - INITIALIZATION
@@ -93,7 +114,7 @@ class MotorcycleMaintenanceTaskTableViewController: CDTableViewController {
         if let motorcycleMaintenanceTask = self.frc.object(at: indexPath) as? MotorcycleMaintenanceTask {
             motorcycleMaintenanceTask.completed = !motorcycleMaintenanceTask.completed;
         }
-
+        
         self.performFetch()
     }
     
