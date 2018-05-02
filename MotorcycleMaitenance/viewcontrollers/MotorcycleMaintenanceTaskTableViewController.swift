@@ -22,7 +22,7 @@ class MotorcycleMaintenanceTaskTableViewController: CDTableViewController, Compl
                 let task = motorcycleTypeMaintenanceTask?.task
                 
                 if let taskDescription = task?.taskDescription {
-                    textLabel.text = "\(taskDescription) (\(self.intervalDescription(task: motorcycleTypeMaintenanceTask!))"
+                    textLabel.text = "\(taskDescription) (\(self.intervalDescription(task: motorcycleTypeMaintenanceTask!)))"
                 }
             }
             
@@ -31,11 +31,11 @@ class MotorcycleMaintenanceTaskTableViewController: CDTableViewController, Compl
                     cell.textLabel?.textColor = UIColor.green
                     
                     if let _completionDate = motorcycleMaintenanceTask.completionDate {
-                        subtitleLabel.text = "Completed at \(_completionDate) \(motorcycleMaintenanceTask.remarks ?? "")"
+                        subtitleLabel.text = "Completed at \(DateUtil.formatDate(date: _completionDate)) \(motorcycleMaintenanceTask.remarks ?? ""), \(motorcycleMaintenanceTask.mileage) km"
                     } else {
                         let now = Date()
                         motorcycleMaintenanceTask.completionDate = now
-                        subtitleLabel.text = "Completed at \(now) \(motorcycleMaintenanceTask.remarks ?? "")"
+                        subtitleLabel.text = "Completed at \(DateUtil.formatDate(date: now)) \(motorcycleMaintenanceTask.remarks ?? "")"
                     }
                 } else {
                     cell.textLabel?.textColor = UIColor.black
@@ -114,7 +114,7 @@ class MotorcycleMaintenanceTaskTableViewController: CDTableViewController, Compl
         //        if let motorcycleMaintenanceTask = self.frc.object(at: indexPath) as? MotorcycleMaintenanceTask {
         //            motorcycleMaintenanceTask.completed = !motorcycleMaintenanceTask.completed;
         //        }
-        //        
+        //
         //        self.performFetch()
     }
     

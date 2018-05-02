@@ -33,11 +33,21 @@ class CompleteTaskViewController: UIViewController, UITextFieldDelegate {
         if let currentRemarks = currentMotorcycleMaintenanceTask?.remarks {
             remarksTextField.text = currentRemarks
         }
+
+        if let currentMileage = currentMotorcycleMaintenanceTask?.mileage {
+            mileageTextField.text = String(currentMileage)
+        }
+
+        if let currentCompletionDate = currentMotorcycleMaintenanceTask?.completionDate {
+            completionDateTextField.text = DateUtil.formatDate(date: currentCompletionDate)
+        } else {
+            completionDateTextField.text = DateUtil.formatDate(date: Date())
+        }
         
         completionDateTextField.delegate = self
         remarksTextField.delegate = self
         mileageTextField.delegate = self
-        23
+        
         self.hideKeyboardWhenBackgroundIsTapped()
     }
     
@@ -73,7 +83,7 @@ class CompleteTaskViewController: UIViewController, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
         switch textField {
         case remarksTextField: currentMotorcycleMaintenanceTask?.remarks = remarksTextField.text
-        case completionDateTextField: currentMotorcycleMaintenanceTask?.completionDate = completionDate
+        case completionDateTextField: currentMotorcycleMaintenanceTask?.completionDate = DateUtil.dateFromString(dateAsString: completionDateTextField.text!)
         case mileageTextField: currentMotorcycleMaintenanceTask?.mileage = Int32(mileageTextField.text!)!
         default: print("Unknown field \(textField)")
         }
