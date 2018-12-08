@@ -13,7 +13,7 @@ class MotorcycleTableViewController: CDTableViewController {
     
     // MARK: - CELL CONFIGURATION
     override func configureCell(cell: UITableViewCell, atIndexPath indexPath: IndexPath) {
-        cell.accessoryType = UITableViewCellAccessoryType.none
+        cell.accessoryType = UITableViewCell.AccessoryType.none
         
         if let motorcycle = self.frc.object(at: indexPath) as? Motorcycle {
             if let textLabel = cell.textLabel {

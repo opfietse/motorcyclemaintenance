@@ -115,10 +115,10 @@ class CDTableViewController: UITableViewController, NSFetchedResultsControllerDe
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell:UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier)
         if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: self.cellIdentifier)
+            cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: self.cellIdentifier)
         }
-        cell!.selectionStyle = UITableViewCellSelectionStyle.none
-        cell!.accessoryType = UITableViewCellAccessoryType.detailButton
+        cell!.selectionStyle = UITableViewCell.SelectionStyle.none
+        cell!.accessoryType = UITableViewCell.AccessoryType.detailButton
         self.configureCell(cell: cell!, atIndexPath: indexPath)
         return cell!
     }

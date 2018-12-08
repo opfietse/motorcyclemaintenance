@@ -80,7 +80,7 @@ class CompleteTaskViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         switch textField {
         case remarksTextField: currentMotorcycleMaintenanceTask?.remarks = remarksTextField.text
         case completionDateTextField: currentMotorcycleMaintenanceTask?.completionDate = DateUtil.dateFromString(dateAsString: completionDateTextField.text!)
